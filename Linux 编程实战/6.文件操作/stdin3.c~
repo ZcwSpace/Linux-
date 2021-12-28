@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<unistd.h>
+
+int main(void)
+{
+  int ret=0;
+  char buf[10]={0};
+  
+  ret=read(0,(void *)buf,10);
+  if(-1==ret)
+    {
+      perror("read fail:");
+      return -1;
+    }
+  printf("buf=%s",buf);
+  
+  return 0;
+}

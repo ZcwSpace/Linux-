@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "unistd.h": "c",
+        "stat.h": "c",
+        "stdlib.h": "c",
+        "types.h": "c",
+        "signal.h": "c",
+        "ipc.h": "c",
+        "stdio.h": "c",
+        "semaphore.h": "c",
+        "sem.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

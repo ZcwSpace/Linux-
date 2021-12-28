@@ -1,0 +1,50 @@
+#include<stdio.h>
+int main()
+{
+  int z,x,c,v,b,sum=0;
+  char one,two,three,four,five;
+  for(z=1;z<=5;z++)
+    {
+      one=64+z;
+      for(x=1;x<=5;x++)
+	{
+	  two=64+x;
+	  if(one!=two)
+	    {
+	      for(c=1;c<=5;c++)
+		{
+		  three=64+c;
+		  if(three!=two)
+		    {
+		      for(v=1;v<=5;v++)
+			{
+			  four=64+v;
+			  if(four!=three)
+			    {
+			      for(b=1;b<=5;v++)
+				{
+				  if(five!=four)
+				    {
+				      five=64+b;
+				      sum=((one==‘B‘)||(three=='A'))&&((two==‘B’)||(four=='E'))&&((one=='C')||(two=='D'))&&((five=='C')||(three=='D'))&&((four=='D')&&(one=='A'));
+				      if(sum==1)
+					{
+					  flag=1;
+					  printf("one：%c two:%c three:%c four:%c five:%c",one,two,three,four,five);
+					  return 0;
+					}
+			
+				    }
+				}
+			    }
+			}
+		    }
+		     
+		}
+	    }
+	    
+	}
+    }
+  return 0;
+}
+ 

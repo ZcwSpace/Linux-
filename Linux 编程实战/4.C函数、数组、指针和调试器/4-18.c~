@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+void copy_string1(char src[],char dst[]);
+void copy_string2(char *psrc,char *pdst)w;
+
+int main()
+{
+  
+}
+void copy_string1(char src[],char dst[])
+{
+  int i;
+
+  for(i=0;src[i]!='\0';i++)
+    {
+      det[i]=src[i];
+    }
+  dst[i]='\0';
+}
+void copy_string1(char src[],char dst[])

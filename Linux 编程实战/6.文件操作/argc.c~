@@ -1,0 +1,11 @@
+//两种标准的main声明方式
+//int main(void)
+//int main(int argc,char *argv[])
+//int main(int argc,char **argv)//变形
+#include<stdio.h>
+/*
+void main()//不标准，用在单片机编程
+{
+  printf("aancvalknckl");
+}
+*/
