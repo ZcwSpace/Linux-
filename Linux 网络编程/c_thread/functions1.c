@@ -29,8 +29,7 @@ int main(void)
     //获取当前函数的线程号，并结束当前线程的运行
     //int pthread_cancel(pthread_t thread);
     //pthread_cancel(pthread_self());
-    pthread_exit(NULL);
-    //定时5秒，时间到了取消次线
+    
     signal(SIGALRM,signal_catch);
     alarm(5);
     //return 0;
