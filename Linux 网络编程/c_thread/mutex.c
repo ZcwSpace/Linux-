@@ -6,6 +6,16 @@
 #include<string.h>
 #include<signal.h>
 
+/*结构体的个别初始化
+struct gloable_va
+{
+    ptharg pth_arg[SECON_PTH_NUMS];
+    int pth_exit_flg[SECON_PTH_NUMS];
+    pthread_attr_t attr;//线程属性
+    pthread_mutex_t mutex;
+}glbva={.mutex=PTHREAD_MUTEX_INITIALIZER};
+*/
+
 //线程函数
 void *pth_fun(void *pth_arg);
 //出错处理函数
@@ -14,7 +24,9 @@ void print_error(char *str,int line,int err_no);
 void signal_catch(int signal_index);
 
 //1、定义互斥锁
+pthread_mutex_t mutex=PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex;
+mutex=PTHREAD_MUTEX_INITIALIZER;
 //定义次线程的线程号
 pthread_t t_id;
 
@@ -25,7 +37,7 @@ int main(void)
 
     signal(SIGINT,signal_catch);
     //2、初始化互斥锁
-    mutex_init_ret=pthread_mutex_init(&mutex,NULL);
+    //mutex_init_ret=pthread_mutex_init(&mutex,NULL);
     if(mutex_init_ret!=0)
     {
         printf("pthread_mutex_init fail",__LINE__,errno);
