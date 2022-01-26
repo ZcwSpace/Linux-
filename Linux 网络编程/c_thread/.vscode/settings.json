@@ -1,6 +1,8 @@
 {
     "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
-        "stat.h": "c"
+        "stat.h": "c",
+        "unistd.h": "c",
+        "pthread.h": "c"
     }
 }
