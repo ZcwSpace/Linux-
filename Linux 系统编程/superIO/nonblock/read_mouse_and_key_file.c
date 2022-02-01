@@ -10,10 +10,11 @@
 void print_err(char *str,int line,int err_no);
 void read_key();
 void read_mouse();
+void read_file();
 
 int main(void)
 {
-    read_mouse();
+    read_file();
 
     return 0;
 }
@@ -63,4 +64,30 @@ void read_mouse()
         printf("222\n\n"); 
     }
     
+}
+
+void read_file()
+{
+    int fd,read_ret;
+    char *buf;
+
+    fd=open("./file",O_RDONLY|O_CREAT,0664);
+    if(fd==-1)
+    {
+        print_err("open ./file fail",__LINE__-3,errno);
+    }
+
+    while(1)
+    {
+        printf("111\n");
+        //read返回读到的字节数
+        read_ret=read(fd,buf,100);
+        printf("read_ret=%d\n",read_ret);
+
+        if(read_ret>0)
+        {
+            printf("%d\n",buf);
+        }
+        printf("222\n\n"); 
+    }
 }
