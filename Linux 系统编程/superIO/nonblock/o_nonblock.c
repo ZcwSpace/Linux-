@@ -14,16 +14,19 @@ void read_file();
 
 int main(void)
 {
+    //read_file();
     read_mouse();
 
     return 0;
 }
+
 void print_err(char *str,int line,int err_no)
 {
     printf("%d,%s:%s\n",line,str,strerror(err_no));
 
     exit(-1);
 }
+
 void read_key()
 {
     char buf[100]={0};
@@ -41,6 +44,7 @@ void read_key()
         printf("222\n\n"); 
     }       
 }
+
 void read_mouse()
 {
     int mousefd=-1;
@@ -48,6 +52,8 @@ void read_mouse()
     int read_ret;
 
     mousefd=open("/dev/input/mouse3",O_RDONLY);
+    //mousefd=open("/dev/input/mouse0",O_RDONLY|O_NONBLOCKmkf
+
     if(mousefd==-1)
     {
         print_err("open mouse fail",__LINE__-3,errno);
