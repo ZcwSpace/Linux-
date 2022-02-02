@@ -51,8 +51,8 @@ void read_mouse()
     int mouse_addr;
     int read_ret;
 
-    mousefd=open("/dev/input/mouse3",O_RDONLY);
-    //mousefd=open("/dev/input/mouse0",O_RDONLY|O_NONBLOCKmkf
+    //mousefd=open("/dev/input/mouse3",O_RDONLY);
+    mousefd=open("/dev/input/mouse0",O_RDONLY|O_NONBLOCK);
 
     if(mousefd==-1)
     {
