@@ -70,7 +70,6 @@ void *child_pthread(void *pth_arg)
 }
 void signal_catch(int signal_index)
 {
-    pthread_exit(&glbva.pthread_arg[0].tid);
     close(glbva.fd);
     sem_destroy(&sem[0]);
 
