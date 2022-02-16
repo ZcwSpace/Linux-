@@ -1,0 +1,68 @@
+zcw@zcw-PC:~/Documents/test$ touch chattr1
+zcw@zcw-PC:~/Documents/test$ ls
+zcw@zcw-PC:~/Documents/test$ ls -l chattr1
+-rw-r--r-- 1 zcw zcw 0 2月  16 18:59 chattr1
+zcw@zcw-PC:~/Documents/test$ cat chattr1 
+zcw@zcw-PC:~/Documents/test$ echo 111 >> chattr1 
+zcw@zcw-PC:~/Documents/test$ cat chattr1 
+111
+zcw@zcw-PC:~/Documents/test$ chattr +i chattr1
+chattr: 不允许的操作 while setting flags on chattr1
+zcw@zcw-PC:~/Documents/test$ sudo chattr +i chattr1 
+请输入密码:
+验证成功
+zcw@zcw-PC:~/Documents/test$ echo 222 >> chattr1 
+bash: chattr1: 不允许的操作
+zcw@zcw-PC:~/Documents/test$ lsattr -a chattr1
+----i---------e---- chattr1//e：文件系统
+root@zcw-PC:/home/zcw/Docume
+root@zcw-PC:/home/zcw/Documents/test# rm -f chattr1 
+rm: 无法删除'chattr1': 不允许的操作
+root@zcw-PC:/home/zcw/Documents/test# mkdir chattr_direfctory
+root@zcw-PC:/home/zcw/Documents/test# cd chattr_direfctory/ 
+root@zcw-PC:/home/zcw/Documents/test/chattr_direfctory# touch c_d_file
+root@zcw-PC:/home/zcw/Documents/test/chattr_direfctory# cd ..
+root@zcw-PC:/home/zcw/Documents/test# chattr +i chattr_direfctory/
+root@zcw-PC:/home/zcw/Documents/test# lsattr -a chattr_direfctory/
+--------------e---- chattr_direfctory/c_d_file
+--------------e---- chattr_direfctory/..
+----i---------e---- chattr_direfctory/.
+root@zcw-PC:/home/zcw/Documents/test# echo 111 >> chattr_direfctory/c_d_file 
+root@zcw-PC:/home/zcw/Documents/test# cat chattr_direfctory/c_d_file 
+111
+root@zcw-PC:/home/zcw/Documents/test# rm -f chattr_direfctory/c_d_file 
+rm: 无法删除'chattr_direfctory/c_d_file': 不允许的操作
+root@zcw-PC:/home/zcw/Documents/test# touch chattr_direfctory/c_d_file2
+touch: 正在设置 'chattr_direfctory/c_d_file2' 的时间: 没有那个文件或目录
+root@zcw-PC:/home/zcw/Documents/test# chattr -i chattr_direfctory/
+root@zcw-PC:/home/zcw/Documents/test# rm -f chattr_direfctory/c_d_file
+root@zcw-PC:/home/zcw/Documents/test# ls -l chattr_direfctory/c_d_file
+ls: 无法访问'chattr_direfctory/c_d_file': 没有那个文件或目录
+
+root@zcw-PC:/home/zcw/Documents/test# touch chattr_file2
+root@zcw-PC:/home/zcw/Documents/test# echo 111 >> chattr_file2 
+root@zcw-PC:/home/zcw/Documents/test# cat chattr_file2 
+111
+root@zcw-PC:/home/zcw/Documents/test# chattr -a chattr_file2 
+root@zcw-PC:/home/zcw/Documents/test# chattr +a chattr_file2 
+root@zcw-PC:/home/zcw/Documents/test# echo 111 >> chattr_file2 
+root@zcw-PC:/home/zcw/Documents/test# cat chattr_file2 
+111
+111
+root@zcw-PC:/home/zcw/Documents/test# rm -f chattr_file2 
+rm: 无法删除'chattr_file2': 不允许的操作
+
+root@zcw-PC:/home/zcw/Documents/test# ls 
+chattr1  chattr_direfctory  chattr_file2  project  test1
+root@zcw-PC:/home/zcw/Documents/test# mkdir chattr_direfctory2
+root@zcw-PC:/home/zcw/Documents/test# touch chattr_direfctory2/c_d_file2
+root@zcw-PC:/home/zcw/Documents/test# chattr +a chattr_direfctory2
+root@zcw-PC:/home/zcw/Documents/test# echo 111 >> chattr_direfctory2/c_d_file2 
+root@zcw-PC:/home/zcw/Documents/test# cat chattr_direfctory2/c_d_file2 
+111
+root@zcw-PC:/home/zcw/Documents/test# echo 222 >> chattr_direfctory2/c_d_file2 
+root@zcw-PC:/home/zcw/Documents/test# cat chattr_direfctory2/c_d_file2 
+111
+222
+root@zcw-PC:/home/zcw/Documents/test# rm -f chattr_direfctory2/c_d_file2 
+rm: 无法删除'chattr_direfctory2/c_d_file2': 不允许的操作
