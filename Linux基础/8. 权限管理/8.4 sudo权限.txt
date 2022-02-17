@@ -1,0 +1,23 @@
+zcw@zcw-PC:~$ sudo visudo
+请输入密码:
+验证成功
+
+zcw@zcw-PC:~$ sudo visudo
+zcw ALL=/sbin/shutdown -r now
+
+zcw@zcw-PC:~$ sudo -l
+请输入密码:
+密码验证失败，您还可以尝试4次
+对不起，请重试。
+请输入密码:
+验证成功
+匹配 %2$s 上 %1$s 的默认条目：
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin,
+    always_set_home
+
+用户 zcw 可以在 zcw-PC 上运行以下命令：
+    (root) /sbin/shutdown -r now
+    (ALL : ALL) ALL
+sudo /sbin/shutdown -r now
+
