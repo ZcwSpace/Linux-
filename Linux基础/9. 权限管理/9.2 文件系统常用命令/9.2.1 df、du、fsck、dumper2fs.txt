@@ -1,0 +1,29 @@
+zcw@zcw-PC:~$ df
+文件系统           1K-块     已用      可用 已用% 挂载点
+udev             3965992        0   3965992    0% /dev
+tmpfs             801812     1764    800048    1% /run
+/dev/nvme0n1p7 102686648 11764888  85662548   13% /
+tmpfs            4009048    46968   3962080    2% /dev/shm
+tmpfs               5120        4      5116    1% /run/lock
+tmpfs            4009048        0   4009048    0% /sys/fs/cgroup
+tmpfs             801808       40    801768    1% /run/user/1000
+/dev/nvme0n1p6  20971516  2479668  18491848   12% /media/zcw/数据
+/dev/nvme0n1p5 268112892 51234604 216878288   20% /media/zcw/软件
+/dev/nvme0n1p3 104127484 51626660  52500824   50% /media/zcw/Windows
+zcw@zcw-PC:~$ df -h
+文件系统        容量  已用  可用 已用% 挂载点
+udev            3.8G     0  3.8G    0% /dev
+tmpfs           784M  1.8M  782M    1% /run
+/dev/nvme0n1p7   98G   12G   82G   13% /
+tmpfs           3.9G   46M  3.8G    2% /dev/shm
+tmpfs           5.0M  4.0K  5.0M    1% /run/lock
+tmpfs           3.9G     0  3.9G    0% /sys/fs/cgroup
+tmpfs           784M   40K  783M    1% /run/user/1000
+/dev/nvme0n1p6   20G  2.4G   18G   12% /media/zcw/数据
+/dev/nvme0n1p5  256G   49G  207G   20% /media/zcw/软件
+/dev/nvme0n1p3  100G   50G   51G   50% /media/zcw/Windows
+
+zcw@zcw-PC:~$ sudo du -sh 
+640M    .
+
+sudo dumpe2fs /dev/nvme0n1p7
