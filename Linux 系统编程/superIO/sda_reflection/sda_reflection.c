@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#define DATA_LENGTH 819200
+#define DATA_LENGTH 4096*1024
 
 void print_err(char *str,int line,int err_no);
 
