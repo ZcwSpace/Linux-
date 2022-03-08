@@ -1,5 +1,6 @@
 #!/bin/bash
 
 git add .
-git commit -m $1
+read -p "请输入描述：" description
+git commit -m "$description"
 git push --set-upstream origin master
