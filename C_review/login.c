@@ -61,7 +61,7 @@ int login()
 }
 void mainMenu()
 {
-    system("clear");
+    //system("clear");
     printf("\n\n\n\t\t\t******学生成绩管理系统******\n");
     getchar();
 }
