@@ -1,0 +1,95 @@
+zcw@zcw-PC:~/Documents/Linux-/test$ cat student.txt 
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed '2p' student.txt 
+ID      Name    genter  Mark
+1       Liming  M       86
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed -n '2p' student.txt 
+1       Liming  M       86
+zcw@zcw-PC:~/Documents/Linux-/test$ df -h|sed -n '2p'
+udev            3.8G     0  3.8G    0% /dev
+zcw@zcw-PC:~/Documents/Linux-/test$ sed -n "2,4d" student.txt 
+zcw@zcw-PC:~/Documents/Linux-/test$ cat student.txt 
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed -n "2,3d" student.txt 
+zcw@zcw-PC:~/Documents/Linux-/test$ sed "2,3d" student.txt 
+ID      Name    genter  Mark
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed "2,4" student.txt 
+sed：-e 表达式 #1，字符 3：遗漏命令
+zcw@zcw-PC:~/Documents/Linux-/test$ sed "2,4d" student.txt 
+ID      Name    genter  Mark
+zcw@zcw-PC:~/Documents/Linux-/test$ sed "4a 4\tzcw\tM\t60" student.txt 
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+4       zcw     M       60
+zcw@zcw-PC:~/Documents/Linux-/test$ sed "1i date:$date" student.txt 
+date:
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed '1d' student.txt 
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ cat student.txt 
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed '1i date:$date' student.txt 
+date:$date
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed '1d' student.txt 
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed '1i date:2022.3.17-8:28' student.txt 
+date:2022.3.17-8:28
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed '1c date:2022.3.17 8:28' student.txt 
+date:2022.3.17 8:28
+1       Liming  M       86
+2       Sc      M       90
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed '3s/90/89/g' student.txt 
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       89
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed -i '3s/90/89/g' student.txt 
+zcw@zcw-PC:~/Documents/Linux-/test$ cat student.txt 
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       89
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed -e 's/Limng//g;^Cstudent.txt 
+zcw@zcw-PC:~/Documents/Linux-/test$ ls
+chattr1  chattr_direfctory2  chattr_file2  student.txt  test_rule.txt
+zcw@zcw-PC:~/Documents/Linux-/test$ cat student.txt 
+ID      Name    genter  Mark
+1       Liming  M       86
+2       Sc      M       89
+3       Gao     M       83
+zcw@zcw-PC:~/Documents/Linux-/test$ sed -e 's/Liming//g;s/Gao//g' student.txt 
+ID      Name    genter  Mark
+1               M       86
+2       Sc      M       89
+3               M       83
