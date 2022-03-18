@@ -1,0 +1,302 @@
+zcw@zcw-PC:~/Documents/Linux-$ ls
+ 1.png   C语言难点   index.html   'Linux 编程实战'   pictures.html   Shell
+ 2.png   config      lazygit.tgz   Linux基础         pictures.hutm   submit.sh
+ 3.png   C_review    LICENSE      'Linux 系统编程'   README.md       test
+zcw@zcw-PC:~/Documents/Linux-$ cd test
+zcw@zcw-PC:~/Documents/Linux-/test$ ls
+chattr1  chattr_direfctory2  chattr_file2  student.txt  test_rule.txt
+zcw@zcw-PC:~/Documents/Linux-/test$ test -e test_rule.txt 
+zcw@zcw-PC:~/Documents/Linux-/test$ echo $?
+0
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -e test_rule.txt]
+bash: [: 缺少 `]'
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -e test_rule.txt ]
+zcw@zcw-PC:~/Documents/Linux-/test$ echo $?
+0
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -e test_rule.txt ] && echo “yes” ||echo "no"
+“yes”
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -e test_rule.txt] && echo “yes” ||echo "no"
+bash: [: 缺少 `]'
+no
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -e test_rule.txt ] && echo “yes” ||echo "no"
+“yes”
+zcw@zcw-PC:~/Documents/Linux-/test$ 00 || 00 && 11
+bash: 00：未找到命令
+bash: 00：未找到命令
+zcw@zcw-PC:~/Documents/Linux-/test$ 0 || 0 && 1
+bash: 0：未找到命令
+bash: 0：未找到命令
+zcw@zcw-PC:~/Documents/Linux-/test$ cat 216510 || cat 1123 && cat test_rule.txt 
+cat: 216510: 没有那个文件或目录
+cat: 1123: 没有那个文件或目录
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -w test_rule.txt ] && echo “yes” ||echo "no"
+“yes”
+zcw@zcw-PC:~/Documents/Linux-/test$ mask
+bash: mask：未找到命令
+zcw@zcw-PC:~/Documents/Linux-/test$ ll -i /etc
+总用量 1184
+4980876 drwxr-xr-x  4 root root     4096 9月  29 11:04 acpi
+4980887 -rw-r--r--  1 root root     2981 9月  29 11:02 adduser.conf
+4981634 -rw-r--r--  1 root root       46 2月   8 08:12 adjtime
+4980888 drwxr-xr-x  3 root root     4096 9月  29 11:04 alsa
+4980903 drwxr-xr-x  2 root root    12288 3月  13 12:31 alternatives
+4982697 drwxr-xr-x  3 root root     4096 2月  17 19:17 apache2
+4981083 drwxr-xr-x  3 root root     4096 9月  29 11:05 apm
+4982583 drwxr-xr-x  2 root root     4096 3月   4 07:32 apparmor
+4981087 drwxr-xr-x  9 root root     4096 3月   4 07:32 apparmor.d
+4981110 -rw-r--r--  1 root root       73 9月   8  2021 appstore.json
+4981111 drwxr-xr-x  7 root root     4096 2月   8 16:09 apt
+4981139 -rw-r--r--  1 root root     1987 8月   4  2020 bash.bashrc
+4981140 -rw-r--r--  1 root root       45 2月  12  2019 bash_completion
+4980755 drwxr-xr-x  2 root root     4096 2月   8 15:33 bash_completion.d
+4981141 -rw-r--r--  1 root root      367 7月  20  2021 bindresvport.blacklist
+4981142 drwxr-xr-x  2 root root     4096 9月  29 11:07 binfmt.d
+4981144 drwxr-xr-x  2 root root     4096 3月  13 12:33 bluetooth
+4981148 drwxr-xr-x  3 root root     4096 9月  29 11:03 ca-certificates
+4981150 -rw-r--r--  1 root root     5989 9月  29 11:07 ca-certificates.conf
+4981151 drwxr-xr-x  2 root root     4096 9月  29 11:02 calendar
+4981153 drwxr-s---  2 root dip      4096 9月  29 11:07 chatscripts
+4981157 drwxr-xr-x  2 root root     4096 9月  29 11:07 cracklib
+4981159 drwxr-xr-x  2 root root     4096 9月  29 11:07 cron.d
+4981162 drwxr-xr-x  2 root root     4096 3月  13 12:31 cron.daily
+4981174 drwxr-xr-x  2 root root     4096 9月  29 11:02 cron.hourly
+4981176 drwxr-xr-x  2 root root     4096 9月  29 11:02 cron.monthly
+4981181 -rw-r--r--  1 root root     1042 10月 11  2019 crontab
+4981178 drwxr-xr-x  2 root root     4096 9月  29 11:02 cron.weekly
+4981182 drwxr-xr-x  2 root root     4096 9月  29 11:07 cryptsetup-initramfs
+4981184 -rw-r--r--  1 root root       54 9月  29 11:04 crypttab
+4981185 drwxr-xr-x  5 root lp       4096 3月  19 07:08 cups
+4981194 drwxr-xr-x  4 root root     4096 9月  29 11:03 dbus-1
+4981219 drwxr-xr-x  3 root root     4096 9月  29 11:04 dde-dock
+4981222 -rw-r--r--  1 root root     2969 2月  26  2019 debconf.conf
+4981223 -rw-r--r--  1 root root        6 8月   2  2021 debian_version
+4981224 drwxr-xr-x  5 root root     4096 2月   8 08:19 deepin
+4982808 -rw-r--r--  1 root root     9112 2月   8 08:13 deepin-installer.conf
+4981235 lrwxrwxrwx  1 root root       32 9月  29 11:07 deepin-version -> /etc/alternatives/deepin-version                                                               
+4981236 drwxr-xr-x  3 root root     4096 3月  13 12:33 default
+4981264 -rw-r--r--  1 root root      604 6月  27  2016 deluser.conf
+4981265 drwxr-xr-x  4 root root     4096 9月  29 11:02 dhcp
+4981275 drwxr-xr-x  2 root root     4096 9月  29 11:09 dictionaries-common
+4981277 drwxr-xr-x  4 root root     4096 9月  29 11:07 dkms
+4981301 drwxr-xr-x  4 root root     4096 9月  29 11:07 dpkg
+4981312 drwxr-xr-x  3 root root     4096 9月  29 11:05 due-shell
+4981315 drwxr-xr-x  3 root root     4096 9月  29 11:04 emacs
+4981318 -rw-r--r--  1 root root        0 9月  29 11:02 environment
+4981319 drwxr-xr-x  4 root root     4096 9月  29 11:07 fonts
+4981380 drwxr-xr-x  2 root root     4096 12月  6  2018 foomatic
+4981381 -rw-r--r--  1 root root       20 6月   3  2020 fprintd.conf
+4981382 -rw-r--r--  1 root root      335 2月   8 16:11 fstab
+4981383 -rw-r--r--  1 root root      280 6月  20  2014 fuse.conf
+4981384 -rw-r--r--  1 root root     2584 7月  20  2021 gai.conf
+4981403 drwxr-xr-x  2 root root     4096 2月  21 09:58 gdb
+4981385 drwxr-xr-x  2 root root     4096 2月   8 08:18 geoclue
+4981387 drwxr-xr-x  4 root root     4096 9月  29 11:05 ghostscript
+4981395 drwxr-xr-x  3 root root     4096 9月  29 11:03 gimp
+4981398 drwxr-xr-x  3 root root     4096 9月  29 11:03 glvnd
+4980739 drwxr-xr-x  2 root root     4096 9月  29 11:08 GNUstep
+4981400 drwxr-xr-x  2 root root     4096 9月  29 11:02 groff
+4982983 -rw-r--r--  1 root root     1155 3月   4 07:32 group
+4982843 -rw-r--r--  1 root root     1142 2月  25 12:01 group-
+4981405 drwxr-xr-x  2 root root     4096 2月   8 08:19 grub.d
+4982630 -rw-r-----  1 root shadow    960 3月   4 07:32 gshadow
+4981404 -rw-r-----  1 root shadow    950 2月  25 12:01 gshadow-
+4981420 drwxr-xr-x  3 root root     4096 9月  29 11:03 gss
+4981422 drwxr-xr-x  2 root root     4096 9月  29 11:07 gtk-2.0
+4981424 drwxr-xr-x  2 root root     4096 9月  29 11:08 gtk-3.0
+4981426 -rw-r--r--  1 root root     5060 10月 26  2018 hdparm.conf
+4981427 -rw-r--r--  1 root root        9 8月   2  2021 host.conf
+4982807 -rw-r--r--  1 root root        7 2月   8 08:12 hostname
+4981428 -rw-r--r--  1 root root      231 2月   8 08:12 hosts
+4981429 -rw-r--r--  1 root root      411 9月  29 11:06 hosts.allow
+4981430 -rw-r--r--  1 root root      711 9月  29 11:06 hosts.deny
+4981431 drwxr-xr-x  2 root root     4096 9月  29 11:08 hp
+4981433 drwxr-xr-x  3 root root     4096 9月  29 11:03 ifplugd
+4981436 drwxr-xr-x  2 root root     4096 3月  13 12:33 init.d
+4981481 drwxr-xr-x  5 root root     4096 2月   8 08:19 initramfs-tools
+4981498 -rw-r--r--  1 root root     1748 5月   5  2018 inputrc
+4981499 drwxr-xr-x  3 root root     4096 9月  29 11:03 insserv
+4981501 -rw-r--r--  1 root root      859 1月  21  2019 insserv.conf
+4981502 drwxr-xr-x  2 root root     4096 1月  21  2019 insserv.conf.d
+4981503 drwxr-xr-x  4 root root     4096 9月  29 11:02 iproute2
+4981517 -rw-r--r--  1 root root      652 1月   2  2019 ipsec.conf
+4981518 drwxr-xr-x 11 root root     4096 9月  29 11:03 ipsec.d
+4981528 -rw-------  1 root root      313 1月   2  2019 ipsec.secrets
+4981529 -rw-r--r--  1 root root      223 9月   8  2021 ipwatchd.conf
+4983016 -rw-r--r--  1 root root       32 3月  12 09:56 issue
+4981531 -rw-r--r--  1 root root       22 8月   2  2021 issue.net
+4981532 drwxr-xr-x  8 root root     4096 9月  29 11:05 kernel
+4982795 -rw-r--r--  1 root root       65 2月   8 16:09 kernel-img.conf
+4981547 drwxr-xr-x 10 root root     4096 9月  29 11:06 laptop-mode
+4981592 drwxr-xr-x  2 root root     4096 9月  29 11:02 ldap
+4982685 -rw-r--r--  1 root root   106365 3月  13 16:30 ld.so.cache
+4981588 -rw-r--r--  1 root root       34 7月  20  2021 ld.so.conf
+4981589 drwxr-xr-x  2 root root     4096 2月   8 08:15 ld.so.conf.d
+4981594 -rw-r--r--  1 root root      191 6月  24  2020 libaudit.conf
+4981595 drwxr-xr-x  3 root root     4096 9月  29 11:04 libblockdev
+4981598 drwxr-xr-x  2 root root     4096 9月  29 11:07 libibverbs.d
+4981614 drwxr-xr-x  2 root root     4096 9月  29 11:07 libnl-3
+4981617 drwxr-xr-x  2 root root     4096 6月  26  2019 libpaper.d
+4981304 drwxr-xr-x  2 root root     4096 2月   8 08:19 libqapt3
+4981618 drwxr-xr-x  2 root root     4096 9月  29 11:08 libreoffice
+4981042 -rw-rw-rw-  1 root root        0 3月  13 16:30 LICENSE
+4981622 drwxr-xr-x  3 root root     4096 2月   8 08:19 lightdm
+4982702 drwxr-xr-x  4 root root     4096 2月  17 19:17 lighttpd
+4981629 drwxr-xr-x  3 root root     4096 2月   8 08:13 live
+4981633 -rw-r--r--  1 root root     2995 7月  22  2021 locale.alias
+4980747 -rw-r--r--  1 root root     9354 2月   8 08:18 locale.gen
+4981635 lrwxrwxrwx  1 root root       33 2月   8 16:12 localtime -> /usr/share/zoneinfo/Asia/Shanghai                                                                   
+4981636 drwxr-xr-x  7 root root     4096 9月  29 11:06 logcheck
+4981647 -rw-r--r--  1 root root    10525 9月  29 11:02 login.defs
+4981648 -rw-r--r--  1 root root      435 8月  22  2018 logrotate.conf
+4981649 drwxr-xr-x  2 root root     4096 2月  16 14:16 logrotate.d
+4982599 -rw-r--r--  1 root root       98 12月 29 20:58 lsb-release
+4981662 -rw-r--r--  1 root root    16118 6月   9  2021 lscolor-256color
+4981663 drwxr-xr-x  3 root root     4096 9月  29 11:08 lvm
+4982965 drwxr-xr-x  2 root root     4096 3月   4 07:32 lxc
+4981675 -r--r--r--  1 root root       33 2月   8 16:11 machine-id
+4981676 -rw-r--r--  1 root root      111 3月  31  2021 magic
+4981677 -rw-r--r--  1 root root      111 3月  31  2021 magic.mime
+4980944 -rw-r--r--  1 root root    32276 3月  13 12:33 mailcap
+4981679 -rw-r--r--  1 root root      449 2月   9  2019 mailcap.order
+4981680 -rw-r--r--  1 root root     5174 2月  10  2019 manpath.config
+4981681 drwxr-xr-x  2 root root     4096 9月  29 11:07 mdadm
+4981683 -rw-r--r--  1 root root    24512 2月   9  2019 mime.types
+4981684 -rw-r--r--  1 root root      812 1月  10  2020 mke2fs.conf
+4981685 drwxr-xr-x  2 root root     4096 2月   8 08:19 modprobe.d
+4981691 -rw-r--r--  1 root root      195 9月  29 11:02 modules
+4981692 drwxr-xr-x  2 root root     4096 3月   4 07:32 modules-load.d
+4982243 -rw-r--r--  1 root root      123 3月  12 10:32 motd
+4982805 lrwxrwxrwx  1 root root       19 2月   8 16:11 mtab -> ../proc/self/mounts
+4981696 -rw-r--r--  1 root root      624 1月   5  2019 mtools.conf
+4981697 drwxr-xr-x  4 root root     4096 9月  29 11:06 mysql
+4981705 -rw-r--r--  1 root root     9278 6月  12  2019 nanorc
+4981706 -rw-r--r--  1 root root      767 12月 11  2018 netconfig
+4981707 drwxr-xr-x  7 root root     4096 9月  29 11:02 network
+4980758 drwxr-xr-x  7 root root     4096 2月   8 08:19 NetworkManager
+4981724 -rw-r--r--  1 root root       60 9月  29 11:02 networks
+4981725 -rw-r--r--  1 root root     2484 7月   6  2018 nilfs_cleanerd.conf
+4981726 -rw-r--r--  1 root root      508 9月  29 11:07 nsswitch.conf
+4980759 drwxr-xr-x  3 root root     4096 2月   8 16:10 nvidia
+4981727 drwxr-xr-x  2 root root     4096 9月  29 11:07 openal
+4981729 drwxr-xr-x  4 root root     4096 9月  29 11:07 openvpn
+4981733 drwxr-xr-x  2 root root     4096 9月  29 11:02 opt
+4980754 lrwxrwxrwx  1 root root       19 12月 30 16:48 os-release -> /usr/lib/os-release                                                                                
+4981736 drwxr-xr-x  3 root root     4096 9月  29 11:04 ostree
+4982623 -rw-r--r--  1 root root      215 12月 29 20:58 os-version
+4981738 -rw-r--r--  1 root root      552 3月  23  2021 pam.conf
+4981739 drwxr-xr-x  2 root root     4096 2月  25 12:01 pam.d
+4981775 -rw-r--r--  1 root root        3 9月  29 11:07 papersize
+4982981 -rw-r--r--  1 root root     2589 3月   4 07:32 passwd
+4981419 -rw-r--r--  1 root root     2589 3月   4 07:32 passwd-
+4981778 drwxr-xr-x  6 root root     4096 9月  29 11:07 pbis
+4981791 drwxr-xr-x  4 root root     4096 9月  29 11:03 perl
+4981795 drwxr-xr-x  2 root root     4096 2月   8 16:11 plymouth
+4981797 -rw-r--r--  1 root root     7649 9月  29 11:08 pnm2ppa.conf
+4981798 drwxr-xr-x  5 root root     4096 9月  29 11:03 polkit-1
+4981810 drwxr-xr-x  4 root root     4096 9月  29 11:05 power
+4981815 drwxr-xr-x  7 root dip      4096 9月  29 11:07 ppp
+4981833 -rw-r--r--  1 root root     5877 12月 10  2019 presage.xml
+4981834 -rw-r--r--  1 root root       36 9月  29 11:11 product-info
+4981835 -rw-r--r--  1 root root      820 8月   2  2021 profile
+4981836 drwxr-xr-x  2 root root     4096 2月   8 08:19 profile.d
+4981842 -rw-r--r--  1 root root     2932 2月  10  2019 protocols
+4981843 -rw-r--r--  1 root root     3668 3月   1  2019 proxychains4.conf
+4981844 drwxr-xr-x  4 root root     4096 9月  29 11:08 pulse
+4981853 drwxr-xr-x  2 root root     4096 9月  29 11:07 python
+4981855 drwxr-xr-x  2 root root     4096 9月  29 11:03 python2.7
+4981857 drwxr-xr-x  2 root root     4096 9月  29 11:07 python3
+4981859 drwxr-xr-x  2 root root     4096 9月  29 11:03 python3.7
+4981861 -rw-r--r--  1 root root     1177 8月  29  2017 rarfiles.lst
+4981862 drwxr-xr-x  2 root root     4096 3月   4 07:32 rc0.d
+4981889 drwxr-xr-x  2 root root     4096 3月   4 07:32 rc1.d
+4981910 drwxr-xr-x  2 root root     4096 3月   4 07:32 rc2.d
+4981937 drwxr-xr-x  2 root root     4096 3月   4 07:32 rc3.d
+4981964 drwxr-xr-x  2 root root     4096 3月   4 07:32 rc4.d
+4981991 drwxr-xr-x  2 root root     4096 3月   4 07:32 rc5.d
+4982018 drwxr-xr-x  2 root root     4096 3月   4 07:32 rc6.d
+4982045 drwxr-xr-x  2 root root     4096 3月   4 07:32 rcS.d
+4982059 -rw-r--r--  1 root root      373 2月  11  2019 rearj.cfg
+4980752 -rw-r--r--  1 root root       53 3月  19 07:08 resolv.conf
+4982061 lrwxrwxrwx  1 root root       13 4月   4  2021 rmt -> /usr/sbin/rmt
+4982062 -rw-r--r--  1 root root      887 2月  10  2019 rpc
+4980753 -rw-r--r--  1 root root     2105 1月  20  2021 rsyslog.conf
+4982064 drwxr-xr-x  2 root root     4096 11月  9  2020 rsyslog.d
+4982065 drwxr-xr-x  3 root root     4096 2月  16 14:16 samba
+4982069 drwxr-xr-x  3 root root     4096 9月  29 11:07 sane.d
+4982150 -rw-r--r--  1 root root     4141 8月   4  2020 securetty
+4982151 drwxr-xr-x  4 root root     4096 9月  29 11:02 security
+4982163 drwxr-xr-x  2 root root     4096 9月  29 11:02 selinux
+4982167 -rw-r--r--  1 root root    10593 12月 19  2018 sensors3.conf
+4982165 drwxr-xr-x  2 root root     4096 9月  29 11:06 sensors.d
+2120053 -rw-r--r--  1 root root    18698 2月  18 07:25 services
+4982588 -rw-r-----  1 root shadow   1712 3月   4 07:32 shadow
+4981777 -rw-r-----  1 root shadow   1712 3月   4 07:32 shadow-
+4982171 -rw-r--r--  1 root root      116 9月  29 11:02 shells
+4982172 drwxr-xr-x 14 root root     4096 2月   8 19:50 skel
+4982226 -rw-r--r--  1 root root     7042 12月 21  2020 smartd.conf
+4982227 drwxr-xr-x  4 root root     4096 9月  29 11:05 smartmontools
+4982231 -rw-r--r--  1 root root     1201 12月  2  2018 smi.conf
+4982232 drwxr-xr-x  2 root root     4096 9月  29 11:06 snmp
+4982234 drwxr-xr-x  2 root root     4096 3月  12 10:29 ssh
+4982244 drwxr-xr-x  4 root root     4096 2月   8 08:19 ssl
+4982526 -rw-r--r--  1 root root      771 8月   2  2021 staff-group-for-usr-local
+4982527 -rw-r--r--  1 root root      281 1月   2  2019 strongswan.conf
+4982528 drwxr-xr-x  3 root root     4096 2月  16 14:16 strongswan.d
+4981008 -rw-r--r--  1 root root       90 2月   8 19:24 subgid
+4982566 -rw-r--r--  1 root root       71 2月   8 19:15 subgid-
+4981040 -rw-r--r--  1 root root       90 2月   8 19:24 subuid
+4982792 -rw-r--r--  1 root root       71 2月   8 19:15 subuid-
+4980743 -r--r-----  1 root root      738 2月  18 12:22 sudoers
+4982568 drwxr-xr-x  2 root root     4096 9月  29 11:07 sudoers.d
+4982571 -rw-r--r--  1 root root     2351 5月  31  2018 sysctl.conf
+4982572 drwxr-xr-x  2 root root     4096 3月   4 07:32 sysctl.d
+4982576 drwxr-xr-x  8 root root     4096 3月  15 12:13 systemd
+4982663 drwxr-xr-x  2 root root     4096 9月  29 11:02 terminfo
+4982665 -rw-r--r--  1 root root       14 2月   8 16:12 timezone
+4982666 drwxr-xr-x  2 root root     4096 8月  23  2021 tmpfiles.d
+4982667 -rw-r--r--  1 root root     1260 12月 14  2018 ucf.conf
+4982857 -rw-r--r--  1 root root       30 12月 13 20:56 udcp-client.conf
+4982668 drwxr-xr-x  4 root root     4096 2月  26 12:18 udev
+4982674 drwxr-xr-x  2 root root     4096 9月  29 11:07 udisks2
+4982676 drwxr-xr-x  3 root root     4096 9月  29 11:03 ufw
+4982690 -rw-r--r--  1 root root      501 11月 15  2018 updatedb.conf
+4980770 drwxr-xr-x  2 root root     4096 9月  29 11:07 UPower
+4982681 -rw-r--r--  1 root root     1523 2月  24  2018 usb_modeswitch.conf
+4982682 drwxr-xr-x  2 root root     4096 7月   8  2021 usb_modeswitch.d
+4982683 -rw-r--r--  1 root root       51 1月  21  2019 vdpau_wrapper.cfg
+4982684 drwxr-xr-x  2 root root     4096 3月  13 12:33 vim
+4982713 drwx------  2 root root     4096 9月  29 11:07 vpnc
+4982715 drwxr-xr-x  5 root root     4096 9月  29 11:03 vulkan
+4982719 -rw-r--r--  1 root root     4942 4月   5  2019 wgetrc
+4982720 drwxr-xr-x  2 root root     4096 9月  29 11:07 wireshark
+4982722 drwxr-xr-x  2 root root     4096 2月   8 08:19 wpa_supplicant
+4980772 drwxr-xr-x 12 root root     4096 2月   8 08:19 X11
+4982726 -rw-r--r--  1 root root      642 3月   2  2019 xattr.conf
+4982727 drwxr-xr-x  7 root root     4096 2月  18 19:28 xdg
+4982788 drwxr-xr-x  2 root root     4096 9月  29 11:07 xl2tpd
+zcw@zcw-PC:~/Documents/Linux-/test$ ls
+chattr1  chattr_direfctory2  chattr_file2  student.txt  test_rule.txt
+zcw@zcw-PC:~/Documents/Linux-/test$ [ test_rule.txt -nt student.txt  ] && echo “yes” ||echo "no"
+no
+zcw@zcw-PC:~/Documents/Linux-/test$ [ test_rule.txt -ot student.txt  ] && echo “yes” ||echo "no"
+“yes”
+zcw@zcw-PC:~/Documents/Linux-/test$ [ 23 -e 22  ] && echo “yes” ||echo "no"
+bash: [: -e：需要二元表达式
+no
+zcw@zcw-PC:~/Documents/Linux-/test$ [ 23 -eq 22  ] && echo “yes” ||echo "no"
+no
+zcw@zcw-PC:~/Documents/Linux-/test$ [ 23 -gt 22  ] && echo “yes” ||echo "no"
+“yes”
+zcw@zcw-PC:~/Documents/Linux-/test$ name=sc
+zcw@zcw-PC:~/Documents/Linux-/test$ [ name -z ] && echo “yes” ||echo "no"
+bash: [: name：需要一元表达式
+no
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -z name ] && echo “yes” ||echo "no"
+no
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -z $"name" ] && echo “yes” ||echo "no"
+no
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -n name && 23 -gt 22 ] && echo “yes” ||echo "no"
+bash: [: 缺少 `]'
+no
+zcw@zcw-PC:~/Documents/Linux-/test$ [ -n name -a 23 -gt 22 ] && echo “yes” ||echo "no"
+“yes”
