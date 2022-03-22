@@ -118,7 +118,8 @@ int getting_list_length(p_node node)
 void inserting_sorting(p_node node)
 {
     p_node front_node,last_node;
-    int i,j,flag=0;
+    int i,j;
+    //int flag=0;
 
     for(i=2,last_node=node->next->next;last_node!=NULL/*&&i<=getting_list_length(node)*/;i++)
     {
@@ -128,17 +129,20 @@ void inserting_sorting(p_node node)
             {
                 inserting_data(node,j,last_node->data);
                 last_node=last_node->next;
-                flag=1;
+                //flag=1;
                 printf("要删除数据了,j=%d,i+1=%d\n",j,i+1);
                 deleting_node(node,i+1);
-                break;
+                goto label;
             }
         }
+        /*
         if(flag!=1)
         {
             last_node=last_node->next;
         }
-        flag=0;
+        flag=0;*/
+        last_node=last_node->next;
+        label:;
     }
 }
 //删除数据，参数分别是：头结点地址 想要删除的节点的位置
