@@ -13,6 +13,7 @@ void outputing_data(p_node node);
 void inserting_data(p_node node,int addr,int data);
 int getting_list_length(p_node node);
 void inserting_sorting(p_node node);
+void deleting_node(p_node node,int addr);
 
 int main(void)
 {
@@ -20,6 +21,7 @@ int main(void)
 
     node=initing_list();
     inputing_data(node);
+    outputing_data(node);
     inserting_sorting(node);
     outputing_data(node);
 
@@ -116,17 +118,57 @@ int getting_list_length(p_node node)
 void inserting_sorting(p_node node)
 {
     p_node front_node,last_node;
-    int i,j;
+    int i,j,flag=0;
 
-    node=node->next;
-    for(i=2,last_node=node->next;last_node!=NULL;last_node=last_node->next,i++)
+    for(i=2,last_node=node->next->next;last_node!=NULL/*&&i<=getting_list_length(node)*/;i++)
     {
-        for(j=1,front_node=node;front_node->next!=NULL&&j<i;front_node->next,j++)
+        for(j=1,front_node=node->next;j<i;front_node=front_node->next,j++)
         {
-            if(last_node->data>front_node->data)
+            if(last_node->data>=front_node->data)//由大到小排序
             {
-                
+                inserting_data(node,j,last_node->data);
+                last_node=last_node->next;
+                flag=1;
+                printf("要删除数据了,j=%d,i+1=%d\n",j,i+1);
+                deleting_node(node,i+1);
+                break;
             }
         }
+        if(flag!=1)
+        {
+            last_node=last_node->next;
+        }
+        flag=0;
     }
+}
+//删除数据，参数分别是：头结点地址 想要删除的节点的位置
+void deleting_node(p_node node,int addr)
+{
+    if(addr>getting_list_length(node))
+    {
+        printf("要删除的位置超过链表的长度！\n");
+
+        //exit(-1);
+    }
+    else if(addr<1)
+    {
+        printf("要删除的位置小于链表的长度！\n");
+
+        exit(-1);
+    }
+    else
+    {
+        p_node front_node,last_node;
+        int i;
+    
+        front_node=node;
+        last_node=node->next;
+        for(i=1;i!=addr;i++)
+        {
+            front_node=last_node;
+            last_node=last_node->next;
+        }
+        front_node->next=last_node->next;
+        free(last_node);
+    }   
 }
