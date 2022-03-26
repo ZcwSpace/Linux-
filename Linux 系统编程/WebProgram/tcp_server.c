@@ -18,6 +18,7 @@ struct sockaddr_in
     short            sin_family;       // 设置地址族AF_***
     unsigned short   sin_port;    // 设置端口号
     struct in_addr   sin_addr;     // 设置IP地址
+    unsigned char __pad[sizeof(struct sockaddr)-sizeof(short int)-sizeof(unsigned short int)-sizeof(struct in_addr)];
 };
 
 void print_err(char *str,int line,int err_no);
