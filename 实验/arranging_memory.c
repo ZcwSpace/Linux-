@@ -2,5 +2,6 @@
 
 int main(void)
 {
-    int num=5;
+    int num;
+    num=1;
 }
