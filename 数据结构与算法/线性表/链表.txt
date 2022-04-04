@@ -1,0 +1,149 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct student
+{
+	int number;
+	int score;
+	struct student *next;
+};
+#define LEN sizeof(struct student)
+struct student *create();
+struct student *cancel(struct student *stu);
+struct student *insert(struct student *stu);
+int main()
+{
+	printf("WELCOME TO STUDENT SCORE MANAGE SYSTEM!\n");
+	struct student *stu;
+	stu = create();
+	stu = cancel(stu);
+	stu = insert(stu);
+	do
+	{
+		printf("学号%d的成绩为%d\n", stu->number, stu->score);
+		stu = stu->next;
+	} while (stu != NULL);
+	printf("END!");
+	return 0;
+}
+struct student *create()
+{
+	struct student *head, *p1, *p2;
+	int n;
+	head = NULL;
+	n = 0;
+	p2 = p1 = (struct student *)malloc(LEN);
+	printf("please enter student number and score:");
+	scanf_s("%d %d", &p1->number, &p1->score);
+	while (p1->number != 0)
+	{
+		n = n + 1;
+		if (n == 1)
+		{
+			head = p1;
+		}
+		else
+		{
+			p2->next = p1;
+			p2 = p1;
+		}
+		p1 = (struct student *)malloc(LEN);
+		printf("please enter new student number and score:");
+		scanf_s("%d %d", &p1->number, &p1->score);
+	}
+	p2->next = NULL;
+	return head;
+}
+struct student *cancel(struct student *stu)
+{
+	struct student *head, *p1, *p2, a;
+	head = stu;
+	p2 = NULL;
+	printf("please enter cancel student number:");
+	scanf_s("%d", &a.number);
+	while (a.number != 0)
+	{
+		if (head == NULL)
+		{
+			printf("\nThis list is NULL");
+		}
+		else
+		{
+			p1 = head;
+			while (a.number != p1->number&&p1->number != NULL)
+			{
+				p2 = p1;
+				p1 = p1->next;
+			}
+			if (p1->number == a.number)
+			{
+				if (p1 == head)
+				{
+					head = p1->next;
+				}
+				else
+				{
+					p2->next = p1->next;
+				}
+			}
+			else
+			{
+				printf("找不到");
+
+			}
+			printf("please enter new cancel student number:");
+			scanf_s("%d", &a.number);
+		}
+	}
+	return head;
+}
+struct student *insert(struct student *stu)
+{
+	struct student *p0, *p1, *p2, *head;
+	head = stu;
+	p1 = head;
+	p2 = NULL;
+	p0 = (struct student *)malloc(LEN);
+	printf("please enter insert student number and score:");
+	scanf_s("%d %d", &p0->number, &p0->score);
+	while (p0->number != 0)
+	{
+		if (head == NULL)
+		{
+			head = p0;
+			head->next = NULL;
+		}
+		else
+		{
+			while (p0->number > p1->number&&p1->next != NULL)
+			{
+				p2 = p1;
+				p1 = p1->next;
+			}
+			if (p0->number > p1->number)
+			{
+				p1->next = p0;
+				p0->next = NULL;
+			}
+			else
+			{
+				if (p1 == head)
+				{
+					head = p0;
+					p0->next = p1;
+				}
+				else
+				{
+					p2->next = p0;
+					p0->next = p1;
+				}
+			}
+		}
+		p0 = (struct student *)malloc(LEN);
+		printf("please enter new insert student number and score:");
+		scanf_s("%d %d", &p0->number, &p0->score);
+	}
+	return head;
+}
+
+
+

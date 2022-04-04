@@ -1,0 +1,172 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct b
+{
+	int number;
+	struct b *next;
+};
+#define LENGTH sizeof(struct b)
+#define Length 20
+struct b *create();
+struct b *create1();
+void method1(struct b *L,int a);
+void method2(struct b *L,int a);
+int main()
+{
+	struct b *num;
+	int a,c;
+	printf("1：创建单链表\n");
+	printf("2：创建循环链表\n");
+	printf("3：使用第一种方法\n");
+	printf("4：使用第二种方法\n");
+	scanf_s("%d", &a);
+	if (a == 1)
+	{
+		num=create();
+	}
+	else
+	{
+		num=create1();
+	}
+	scanf_s("%d", &c);
+	if (c == 3)
+	{
+		method1(num,a);
+	}
+	else
+	{
+		method2(num,a);
+	}
+	return 0;
+}
+struct b *create()
+{
+	struct b *head, *p1, *p2;
+	int n;
+	head = NULL;
+	n = 0;
+	p2 = p1 = (struct b *)malloc(LENGTH);
+	p1->number = rand() % 100 + 1;
+	while (n<=Length)
+	{
+		n = n + 1;
+		if (n == 1)
+		{
+			head = p1;
+		}
+		else
+		{
+			p2->next = p1;
+			p2 = p1;
+		}
+		p1 = (struct b *)malloc(LENGTH);
+		p1->number = rand() % 100 + 1;
+	}
+	p2->next = NULL;
+	return head;
+}
+struct b *create1()
+{
+	struct b *p, *p1, *head;
+	int n = 0;
+	head = NULL;
+
+	p = p1 = (struct b *)malloc(LENGTH);
+	p->number = rand() % 100 + 1;
+	while (n<Length)
+	{
+		n++;
+		if (n == 1)
+		{
+			head = p;
+		}
+		else
+		{
+			p1->next = p;
+			p1 = p;
+		}
+		p = (struct b *)malloc(LENGTH);
+		p->number = rand() % 100 + 1;
+	}
+	p1->next = head;
+	return p1;
+}
+void method1(struct b *L,int a)
+{
+	struct b *p, *q;
+	int i = 1,j=1;
+	if (a == 2)
+	{
+		p = q = L->next;
+		while (p == q)
+		{
+			p = p->next;
+			p = p + 1;
+			while (j != i)
+			{
+				q = q->next;
+				j++;
+				if (q == p)
+				{
+					break;
+				}
+			}
+			if (i != j)
+			{
+				break;
+			}
+			q = L->next;
+		}
+		printf("%d %d", i, j);
+		printf("为循环链表");
+	}
+	else
+	{
+		p = q = L;
+		while (p == q&&p->next!=NULL)
+		{
+			p = p->next;
+			i++;
+			while (j <= i)
+			{
+				q = q->next;
+				j++;
+			}
+			q = L;
+		}
+		printf("%d %d", i, j);
+		printf("为单链表");
+	}
+	
+}
+void method2(struct b *L,int a)
+{
+	struct b *p,*q;
+	if (a == 1)
+	{
+		p = L;
+		q = L;
+		p = p->next;
+		q = q->next->next;
+		while (q->next!=NULL)
+		{
+			p = p->next;
+			q = q->next->next;
+		}
+		printf("%d %d", p->number, q->number);
+		printf("为单链表");
+	}
+	else
+	{
+		p = q = L->next;
+		p = p->next;
+		q = q->next->next;
+		while (p != q)
+		{
+			p = p->next;
+			q = q->next->next;
+		}
+		printf("%d %d", p->number, q->number);
+		printf("为循环链表");
+	}
+}

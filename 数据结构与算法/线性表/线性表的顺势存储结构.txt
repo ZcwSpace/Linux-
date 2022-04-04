@@ -1,0 +1,92 @@
+#include <stdio.h>
+#define MAXSIZE 20
+typedef struct
+{
+	int data[MAXSIZE];
+	int length;
+}Sqlist;
+void control(Sqlist *La, Sqlist *Lb, int Lb_length);
+int main()
+{
+	Sqlist La, Lb;
+	int m,i=0;
+	printf("please enter A:\n");
+	printf("please enter number:");
+	scanf_s("%d", &m);
+	for (i = 0;m != 0;i++)
+	{
+		La.data[i] = m;
+		printf("please enter new number:");
+		scanf_s("%d", &m);
+	}
+	for (m = 0;m < i;m++)
+	{
+		printf("%d ", La.data[m]);
+	}
+	printf("\n");
+	La.length = i;
+	printf("A的长度为：%d\n", La.length);
+	printf("please enter B:\n");
+	printf("please enter number:");
+	scanf_s("%d", &m);
+	for (i = 0;m != 0;i++)
+	{
+		Lb.data[i] = m;
+		printf("please enter new number:");
+		scanf_s("%d", &m);
+	}
+	for (m = 0;m < i;m++)
+	{
+		printf("%d ", Lb.data[m]);
+	}
+	printf("\n");
+	Lb.length = i;
+	printf("B的长度为：%d\n", Lb.length);
+	control(&La, &Lb, Lb.length);
+	printf("A最终为：");
+	for (m = 0;m < La.length;m++)
+	{
+		printf("%d ", La.data[m]);
+	}
+	return 0;
+}
+int GetElem(Sqlist *L, int i);
+int LocateElem(Sqlist *L, int e);
+void ListInsert(Sqlist *L, int i,int e);
+void control(Sqlist *La, Sqlist *Lb,int Lb_length)
+{
+	int e,i;
+	for (i = 1;i <= Lb_length;i++)
+	{
+		e=GetElem(Lb, i);
+		if (!LocateElem(La,e))
+		{
+			ListInsert(La, ++La->length, e);
+		}
+	}
+}
+int GetElem(Sqlist *L, int i)
+{
+	return (L->data[i - 1]);
+}
+int LocateElem(Sqlist *L, int e)
+{
+	int i;
+	for (i = 0;i < L->length;i++)
+	{
+		if (L->data[i] == e)
+		{
+			return i++;
+		}
+	}
+	if (i == L->length)
+	{
+		return 0;
+	}
+}
+void ListInsert(Sqlist *L, int i,int e)
+{
+	i = i - 1;
+	L->data[i] = e;
+}
+

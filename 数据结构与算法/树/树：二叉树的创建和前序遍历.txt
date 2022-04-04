@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include<stdlib.h>
+#define ELEM_TYPE char
+typedef struct BiTNode
+{
+	ELEM_TYPE data;
+	struct BiTNode *lchild, *rchild;
+}BiTNode,*BiTree;
+void create_tree(BiTree *T);
+void travel_binary_tree(BiTree T, int level);
+void visit(char c, int level);
+int main()
+{
+	int level = 1;
+	BiTree T = NULL;
+	create_tree(&T);
+	travel_binary_tree(T, level);
+	return 0;
+}
+void create_tree(BiTree *T)
+{
+	char c;
+	scanf_s("%c", &c, 1);
+	if (' ' == c)
+	{
+		*T = NULL;
+	}
+	else
+	{
+		*T = (BiTNode *)malloc(sizeof(BiTNode));
+		(*T)->data = c;
+		create_tree(&(*T)->lchild);
+		create_tree(&(*T)->rchild);
+	}
+}
+//遍历二叉树
+void travel_binary_tree(BiTree T, int level)
+{
+	if (T != NULL)
+	{
+		visit(T->data, level);
+		travel_binary_tree(T->lchild, level + 1);
+		travel_binary_tree(T->rchild, level + 1);
+	}
+}
+void visit(char c, int level)
+{
+	printf("节点%c所在的层数为%d\n", c, level);
+}
+

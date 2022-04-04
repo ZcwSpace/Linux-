@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct b
+{
+	int number;
+	int code;
+	struct b *next;
+};
+#define Leng sizeof(struct b)
+#define length 41/*此为与循环链表的成员数目*/
+struct b *create();
+void cancel(struct b * L);
+void main()
+{
+	struct b *num;
+	num = create();
+	cancel(num);
+}
+struct b *create()
+{
+	struct b *p, *p1, *head;
+	int n = 0, i = 1;
+	head = NULL;
+	p1 = p = (struct b *)malloc(Leng);
+	p->number = i;
+	p->code = rand()%100 + 1;
+	i++;
+	while (n < length)
+	{
+		n++;
+		if (n == 1)
+		{
+			head = p;
+		}
+		else
+		{
+			p1->next = p;
+			p1 = p;
+		}
+		p = (struct b *)malloc(Leng);
+		p->number = i;
+		p->code = rand()%100 + 1;
+		i++;
+	}
+	p1->next = head;
+	return p1;
+}
+void cancel(struct b * L)
+{
+	int n,i;
+	struct b *p,*p1;
+	p1 = NULL;
+	p = L;
+	n = p->next->code;
+	while (p->next != p)
+	{
+		for (i = 1;i <= n;i++)
+		{
+			p1 = p;
+			p = p-> next;
+		}
+		p1->next = p->next;
+		printf("%d ", p->number);
+		n = p->code;
+	}
+}

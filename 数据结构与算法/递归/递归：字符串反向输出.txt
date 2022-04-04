@@ -1,0 +1,19 @@
+#include <stdio.h>
+void print();
+int main()
+{
+	print();
+}
+void print()
+{
+	char a;
+	scanf_s("%c", &a,1);
+	if (a != '#')
+	{
+		print();
+	}
+	if (a != '#')
+	{
+		printf("%c", a);
+	}
+}

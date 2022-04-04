@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define ELEMTYPE char
+typedef struct QNode
+{
+	ELEMTYPE data;
+	struct QNode *next;
+}QNode,*QueuePrt;
+typedef struct
+{
+	QueuePrt front, rear;
+}LinkQueue;
+void create_queue(LinkQueue *q);
+void push_queue(LinkQueue *q,ELEMTYPE e);
+void pop_queue(LinkQueue *q);
+void destory_queue(LinkQueue *q);
+int main()
+{
+	LinkQueue queue;
+	ELEMTYPE e;
+	int i,n;
+	create_queue(&queue);
+	printf("请输入字符串：");
+	scanf_s("%c", &e);
+	while (e != '#')
+	{
+		push_queue(&queue,e);
+		scanf_s("%c", &e);
+	}
+	printf("请输入你要删除几个：");
+	scanf_s("%d", &n);
+	for (i = 1;i <= n;i++)
+	{
+		pop_queue(&queue);
+	}
+	destory_queue(&queue);
+	for (queue.front = queue.front->next;queue.front != NULL;queue.front = queue.front->next)
+	{
+		printf("%c ", queue.front->data);
+	}
+}
+void create_queue(LinkQueue *q)
+{
+	q->front = q->rear = (QueuePrt)malloc(sizeof(QNode));
+	if (!q->front)
+	{
+		exit(0);
+	}
+	q->front->next = NULL;
+}
+void push_queue(LinkQueue *q, ELEMTYPE e)
+{
+	QueuePrt p;
+	p = (QueuePrt)malloc(sizeof(QNode));
+	if (p == NULL)
+	{
+		exit(0);
+	}
+	p->data = e;
+	p->next = NULL;
+	q->rear->next = p;
+	q->rear = p;
+}
+void pop_queue(LinkQueue *q)
+{
+	QueuePrt p;
+	if (q->front ==q->rear)
+	{
+		return;
+	}
+	p = q->front->next;
+	q->front->next = p->next;
+	if (q->rear == p)
+	{
+		q->rear = q->front;
+	}
+	free(p);
+}
+void destory_queue(LinkQueue *q)
+{
+	while (q->front)
+	{
+		q->rear = q->front->next;
+		free(q->front);
+		q->front = q->rear;
+	}
+}

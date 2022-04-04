@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct b
+{
+	int number;
+	struct b *next;
+};
+#define LENGTH sizeof(struct b)
+struct b *create();
+void operate(struct b *L);
+void main()
+{
+	struct b *num;
+	num=create();
+	operate(num);
+}
+struct b *create()
+{
+	struct b *p, *p1,*head;
+	int n=0;
+	head = NULL;
+	
+	p = p1 = (struct b *)malloc(LENGTH);
+	p->number = rand()%100+1;
+	while (n < 20)
+	{
+		n++;
+		if (n == 1)
+		{
+			head = p;
+		}
+		else
+		{
+			p1->next = p;
+			p1 = p;
+		}
+		p = (struct b *)malloc(LENGTH);
+		p->number = rand()%100+1;
+	}
+	p1->next = head;
+	return head;
+}
+void operate(struct b *L)
+{
+	struct b *h, *h2,*h1;
+	h1=h = h2 = L;
+	h2 = h2->next->next;
+	h = h->next;
+	while (h2!= h1)
+	{
+		h2 = h2->next->next;
+		h = h->next;
+	}
+	printf("%d", h->number);
+}

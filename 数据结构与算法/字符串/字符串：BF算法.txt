@@ -1,0 +1,36 @@
+#include <stdio.h>
+int index(char s[], char t[]);
+int main()
+{
+	char s[50], t[60];
+	printf("请输入主串：");
+	scanf_s("%s", s, 50);
+	printf("请输入子串：");
+	scanf_s("%s", t, 50);
+	printf("%d", index(s, t));
+	return 0;
+}
+int index(char s[], char t[])
+{
+	int i = 0, j = 0,k=0;
+	while (t[j] != '\0'&&s[i] != '\0')
+	{
+		if (t[j] == s[i])
+		{
+			i++;
+			j++;
+		}
+		else
+		{
+			i = ++k;
+			j = 0;
+		}
+	}
+	if (t[j] == '\0')
+	{
+		return 1;
+	}
+	return 0;
+}
+
+

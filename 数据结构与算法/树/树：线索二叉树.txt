@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef char ELEM_TYPE;
+typedef enum {Link, Thread} PointerTag;
+//线索存储标志位
+//Link(0),表示指向左孩子的指针
+//Thread(1),表示指向前驱后继的线索
+typedef struct BiThrNode
+{
+	char data;
+	struct BiThrNode *lchild, *rchild;
+	PointerTag ltag;
+	PointerTag rtag;
+}BiThrNode,*BiThrTree;
+//全局变量，始终指向刚刚访问过的结点
+BiThrTree pre;
+//创建一颗二叉树，方便用按照前序遍历的方式输入数据
+void Creat_BiThrTree(BiThrTree *T)
+{
+	char c;
+	scanf_s("%c", &c,1);
+	if (' ' == c)
+	{
+		*T = NULL;
+	}
+	else
+	{
+		*T = (BiThrNode * )malloc(sizeof(BiThrNode));
+		(*T)->data = c;
+		(*T)->ltag = Link;
+		(*T)->rtag = Link;
+		Creat_BiThrTree(&(*T)->lchild);
+		Creat_BiThrTree(&(*T)->rchild);
+	}
+}
+//中序遍历线索化
+void InThreading(BiThrTree T)
+{
+	if (T)
+	{
+		InThreading(T->lchild);
+		if (! T->lchild)
+		{
+			T->ltag = Thread;
+			T->lchild = pre;
+		}
+		if (!pre->rchild)
+		{
+			pre->rtag = Thread;
+			pre->rchild = T;
+		}
+		pre = T;
+		InThreading(T->rchild);
+	}
+}
+void InOrderThreading(BiThrTree *p, BiThrTree T)//p为头结点
+{
+	*p =  (BiThrNode *)malloc(sizeof(BiThrNode));
+	(*p)->ltag = Link;
+	(*p)-> rtag = Thread;
+	(*p)->rchild = *p;
+	if (!T)
+	{
+		(*p)->rchild = *p;
+	}
+	else
+	{
+		(*p)->lchild = T;//pre为T的前驱结点
+		pre = *p;
+		InThreading(T);	//开始中序遍历
+		pre->rtag = Thread;
+		pre->rchild = *p;
+		(*p)->rchild = pre;
+	}
+}
+void visit(ELEM_TYPE data)
+{
+	printf("%c", data);
+}
+void InOrderTraverse(BiThrTree T)
+{
+	BiThrTree p;
+	p = T -> lchild;
+	while (p != T)
+	{
+		while (p->ltag == Link)
+		{
+			p = p->lchild; 
+		}
+		visit(p->data);
+		while (p->rtag == Thread && p->rchild != T)
+		{
+			p = p->rchild;
+			visit(p->data);
+		}
+		p = p->rchild;
+	}
+}
+int main()
+{
+	BiThrTree P,T;
+	T = NULL;
+	Creat_BiThrTree(&T);
+	InOrderThreading(&P,T);
+	printf("中序遍历输出结果为：");
+	InOrderTraverse(P);
+	//printf("\n");
+	return 0;
+}

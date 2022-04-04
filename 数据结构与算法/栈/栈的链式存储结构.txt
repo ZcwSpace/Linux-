@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TYPE int
+typedef struct a
+{
+	TYPE data;
+	struct a *next;
+}StackNode,*LinkStackPtr;
+struct b
+{
+	LinkStackPtr top;
+	int count;
+};
+void push(struct b *s, TYPE e);
+void pop(struct b *s);
+int empty(struct b *s);
+int main()
+{
+	struct b stack;
+	char e;
+	int i;
+	stack.count = 0;
+	printf("请输入数字：");
+	scanf_s("%c", &e);
+	while (e != '#')
+	{
+		push(&stack, e);
+		scanf_s("%c", &e);
+	}
+	getchar();
+	printf("请输入你要删除的个数：");
+	scanf_s("%d", &e);
+	for (i = 1;i <= e;i++)
+	{
+		pop(&stack);
+	}
+	printf("栈中的数据为：");
+	for (i = 0;i <= stack.count;i++)
+	{
+		printf("%d ", (stack.top->data-48));
+		stack.top = stack.top->next;
+	}
+	return 0;
+}
+void push(struct b *s, TYPE e)
+{
+	LinkStackPtr p;
+	p = (StackNode *)malloc(sizeof(StackNode));
+	p->data = e;
+	p->next = s->top;
+	s->top = p;
+	s->count++;
+}
+void pop(struct b *s)
+{
+	LinkStackPtr p;
+	if (empty(s))
+	{
+		exit(0);
+	}
+	p = s->top;
+	s->top = s->top->next;
+	free(p);
+	s->count--;
+}
+int empty(struct b *s)
+{
+	if (s->top == s->top->next)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}

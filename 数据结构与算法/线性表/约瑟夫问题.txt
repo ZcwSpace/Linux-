@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct b
+{
+	int number;
+	struct b *next;
+};
+#define Leng sizeof(struct b)
+#define length 41
+struct b *create();
+void cancel(struct b * L);
+void main()
+{
+	struct b *num;
+	num=create();
+	cancel(num);
+}
+struct b *create()
+{
+	struct b *p, *p1,*head;
+	int n=0,i=1;
+	head = NULL;
+	p1=p = (struct b *)malloc(Leng);
+	p->number = i;
+	i++;
+	while (n<length)
+	{
+		n++;
+		if (n == 1)
+		{
+			head = p;
+		}
+		else
+		{
+			p1->next = p;
+			p1 = p;
+		}
+		p = (struct b *)malloc(Leng);
+		p->number = i;
+		i++;
+	}
+	p1->next = head;
+	return p1;
+}
+void cancel(struct b * L)
+{
+	int i;
+	struct b *p,*p1;
+	p = L;
+	while (p->next!=p)
+	{
+		for (i = 1;i <= 3;i++)
+		{
+			p1 = p;
+			p = p->next;
+		}
+		printf("%d ", p->number);
+		p1->next = p->next;
+	}
+	
+}

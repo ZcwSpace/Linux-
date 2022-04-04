@@ -1,0 +1,18 @@
+#include <stdio.h>
+int a(int i);
+int main()
+{
+	int i;
+	printf("请输入你想要得到的第几位斐波那契数列的值：");
+	scanf_s("%d", &i);
+	i = a(i);
+	printf("%d",i);
+}
+int a(int i)
+{
+	if (i < 2)
+	{
+		return i == 0 ? 0 : 1;
+	}
+	return a(i - 1) + a(i - 2);
+}

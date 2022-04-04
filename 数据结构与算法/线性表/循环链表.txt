@@ -1,0 +1,157 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct b
+{
+	int number;
+	struct b *next;
+};
+#define LENGTH sizeof(struct b)
+struct b *create();
+struct b *insert(struct b *L);
+struct b *cancel(struct b * L);
+int ReturnFix(struct b *L, int fix);
+void main()
+{
+	struct b *num,*head;
+	int number;
+	num=create();
+	num = insert(num);
+	num = cancel(num);
+	printf("please enter your want to fix number:");
+	scanf_s("%d", &number);
+	number=ReturnFix(num, number);
+	printf("fix is %d\n", number);
+	head = num->next;
+	num = num->next;
+	do
+	{
+		printf("%d ", num->number);
+		num = num->next;
+	} while (num != head);
+}
+struct b *create()
+{
+	struct b *p, *p1,*head;
+	int n=0;
+	head = NULL;
+	
+	p = p1 = (struct b *)malloc(LENGTH);
+	printf("please enter number:");
+	scanf_s("%d", &p->number);
+	while (p->number!=0)
+	{
+		n++;
+		if (n == 1)
+		{
+			head = p;
+		}
+		else
+		{
+			p1->next = p;
+			p1 = p;
+		}
+		p = (struct b *)malloc(LENGTH);
+		printf("please enter number:");
+		scanf_s("%d", &p->number);
+	}
+	p1->next = head;
+	return p1;
+}
+struct b *insert(struct b *L)
+{
+	int n,i;
+	struct b *p, *p1, *p2;
+	p = L;
+	p2 = (struct b *)malloc(LENGTH);
+	printf("please enter your want to insert fix and number:");
+	scanf_s("%d %d", &n,&p2->number);
+	while (n > 0)
+	{
+		for (i = 1;i <= n;i++)
+		{
+			p = p->next;
+		}
+		if (p == L)
+		{
+			p1 = p->next;
+			p->next = p2;
+			p2->next = p1;
+			L = p2;
+			for (p;p != L;p = p->next)
+			{
+				;
+			}
+		}
+		else
+		{
+			p1 = p->next;
+			p->next = p2;
+			p2->next = p1;
+			for (p;p != L;p = p->next)
+			{
+				;
+			}
+		}
+
+		
+		p2 = (struct b *)malloc(LENGTH);
+		printf("please enter your want to insert fix and number:");
+		scanf_s("%d %d", &n, &p2->number);
+	}
+	return p;
+}
+struct b *cancel(struct b * L)
+{
+	int n,i;
+	struct b *p,*p1;
+	p1 = NULL;
+	p= L;
+	printf("please your want to cancel fix:");
+	scanf_s("%d", &n);
+	while (n > 0)
+	{
+		for (i = 1;i <=n;i++)
+		{
+			p1 = p;
+			p = p->next;
+		}
+		if (p == L)
+		{
+			p1->next = p->next;
+			L = p1;
+			for (p;p != L;p = p->next)
+			{
+				;
+			}
+		}
+		else
+		{
+			p1->next = p->next;
+			for (p;p != L;p = p->next)
+			{
+				;
+			}
+		}
+		printf("please your want to cancel fix:");
+		scanf_s("%d", &n);
+	}
+	return L;
+}
+int ReturnFix(struct b *L, int number)
+{
+	struct b *p;
+	p = L;
+	int i=0;
+	for (p;p->number != number && p->next!= L;i++)
+	{
+		p = p->next;
+	}
+	if (p==L)
+	{
+		return 0;
+	}
+	else
+	{
+		return i;
+	}
+}

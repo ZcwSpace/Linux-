@@ -1,0 +1,132 @@
+#include <stdio.h>
+#define MAXSIZE 100
+struct b
+{
+	int data;
+	int cur;
+}a[MAXSIZE];
+int InitList(struct b space[]);
+void create(struct b newlist[]);
+void insert(struct b newlist[]);
+void cancel(struct b newlist[]);
+int main()
+{
+	int n;
+	InitList(a);
+	create(a);
+	insert(a);
+	n = MAXSIZE - 1;
+	while (n != 0)
+	{
+		n = a[n].cur;
+		if (n != 0)
+		{
+			printf("%d ", a[n].data);
+		}
+	}
+	printf("\n");
+	cancel(a);
+	n = MAXSIZE - 1;
+	while (n != 0)
+	{
+		n = a[n].cur;
+		if (n != 0)
+		{
+			printf("%d ", a[n].data);
+		}
+		
+	}
+	return 0;
+}
+int InitList(struct b  space[])
+{
+	int i;
+	for (i = 0;i < MAXSIZE - 1;i++)
+	{
+		space[i].cur = i + 1;
+	}
+	space[MAXSIZE - 1].cur = 0;
+	return 1;
+}
+void create(struct b newlist[])
+{
+	int i, m;
+	newlist[MAXSIZE - 1].cur = 1;
+	printf("please enter number : ");
+	scanf_s("%d", &m);
+	for (i = 1;m != 0;i++)
+	{
+		newlist[i].data = m;
+		printf("please enter number : ");
+		scanf_s("%d", &m);
+	}
+	newlist[i-1].cur = 0;
+	newlist[0].cur = i ;
+}
+void insert(struct b newlist[])
+{
+	int m, n, i;
+	printf("please enter insert fix and number :");
+	scanf_s("%d %d", &m, &n);
+	while (m >= 0)
+	{
+		newlist[newlist[0].cur].data = n;
+		newlist[newlist[0].cur].cur = newlist[0].cur;
+		if (m >= newlist[0].cur)
+		{
+			newlist[newlist[0].cur - 1].cur = newlist[newlist[0].cur].cur;
+			newlist[newlist[0].cur].cur = 0;
+		}
+		else
+		{
+			i = newlist[m].cur;
+			newlist[m].cur = newlist[newlist[0].cur].cur;
+			newlist[newlist[0].cur].cur = i;
+		}
+		newlist[0].cur++;
+		printf("please enter insert fix and number :");
+		scanf_s("%d %d", &m, &n);
+	}
+}
+void cancel(struct b newlist[])
+{
+	int n,i,m,p,e;
+	printf("please enter your want to cancel fix:");
+	scanf_s("%d", &n);
+	while (n >0)
+	{
+		m = MAXSIZE - 1;
+		if (n == 1)
+		{
+			p = newlist[m].cur;
+			newlist[m].cur = newlist[newlist[m].cur].cur;
+			newlist[p].cur = newlist[0].cur;
+			newlist[0].cur = p;
+		}
+		else
+		{
+			
+			for (i = 1;i <=n;i++)
+			{
+				e = m;
+				m = newlist[m].cur;/*newlist[m].cur要删除位置的地址*/
+			}
+			if (newlist[m].cur!=0)
+			{
+				newlist[e].cur = newlist[m].cur;
+				newlist[m].cur = newlist[0].cur;
+				newlist[0].cur = m;
+				
+			}
+			else
+			{
+				newlist[e].cur = 0;
+				newlist[m].cur = newlist[0].cur;
+				newlist[0].cur = m;
+			}
+		}
+		printf("please enter your want to cancel fix:");
+		scanf_s("%d", &n);
+	}
+}
+

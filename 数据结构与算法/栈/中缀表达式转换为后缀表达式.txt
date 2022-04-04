@@ -1,0 +1,148 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#define TYPE char
+struct b
+{
+	TYPE *base;
+	TYPE *top;
+	int stack_size;
+};
+void create_stack(struct b *s);
+void push_stack(struct b *s, TYPE e);
+TYPE pop(struct b *s);
+int stack_length(struct b *s);
+int main()
+{
+	struct b stack;
+	int i = 0,grade=0,type;
+	double d;
+	char e, str[20];
+	create_stack(&stack);
+	printf("你要输入的数据是否是同一优先级：");
+	scanf_s("%d", &type);
+	printf("请输入数字:");
+	scanf_s("%c", &e, 1);
+	while (isdigit(e) || e == '.')
+	{
+		str[i++] = e;
+		str[i] = '\0';
+		scanf_s("%c", &e, 1);
+		if (e == ' ')
+		{
+			d = atof(str);
+			printf("%.1f ", d);
+			i = 0;
+			break;
+		}
+	}
+	while (e != '#')
+	{
+		scanf_s("%c", &e, 1);
+		while (isdigit(e) || e == '.')
+		{
+			str[i++] = e;
+			str[i] = '\0';
+			scanf_s("%c", &e, 1);
+			if (e == ' ')
+			{
+				d = atof(str);
+				printf("%.1f ", d);
+				if (grade == 1)
+				{
+					for (i = stack.top - stack.base;i > 0;i--)
+					{
+						printf("%c ", pop(&stack));
+					}
+					grade = 0;
+				}
+				i = 0;
+				break;
+			}
+		}
+		switch (e)
+		{
+		case '+':
+			push_stack(&stack, '+');
+			if (type = 0)
+			{
+				grade = 0;
+			}
+			else
+			{
+				grade = 1;
+			}
+			break;
+		case '-':
+			push_stack(&stack, '-');
+			if (type = 0)
+			{
+				grade = 0;
+			}
+			else
+			{
+				grade = 1;
+			}
+			break;
+		case '*':
+			push_stack(&stack, '*');
+			grade = 1;
+			break;
+		case '/':
+			push_stack(&stack, '/');
+			grade = 1;
+			break;
+		case '(':
+			push_stack(&stack, '(');
+			break;
+		case ')':
+			e = pop(&stack);
+			while (e != '(')
+			{
+				printf("%c ", e);
+				e = pop(&stack);
+			}
+		}
+	}
+	getchar();
+	for (i = stack.top - stack.base;i > 0;i--)
+	{
+		printf("%c ", pop(&stack));
+	}
+}
+#define SIZE 100
+void create_stack(struct b *s)
+{
+	s->base = (TYPE *)malloc(SIZE * sizeof(TYPE));
+	if (!s->base)
+	{
+		exit(0);
+	}
+	s->top = s->base;
+	s->stack_size = SIZE;
+}
+void push_stack(struct b *s, TYPE e)
+{
+	if (s->top - s->base >= s->stack_size)
+	{
+		s->base = (TYPE *)realloc(s->base, (s->stack_size + SIZE) * sizeof(TYPE));
+		if (!s->base)
+		{
+			exit(0);
+		}
+		s->top = s->base + s->stack_size;
+		s->stack_size = s->stack_size + SIZE;
+	}
+	*(s->top) = e;
+	s->top++;
+}
+TYPE pop(struct b *s)
+{
+	TYPE e;
+	if (s->top == s->base)
+	{
+		return 0;
+	}
+	e = *--(s->top);
+	return e;
+}

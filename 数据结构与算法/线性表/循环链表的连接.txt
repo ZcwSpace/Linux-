@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct b
+{
+	int number;
+	struct b *next;
+};
+#define Length 21
+#define LENGTH sizeof(struct b)
+struct b *create();
+int main()
+{
+	struct b *num1, *num2,*num3,*p;
+	num1 = create();
+	num2 = create();
+	p = num2->next;
+	num2->next = num1->next;
+	num1->next = p;
+	num3 = num2->next;
+	num2 = num2->next;
+	do
+	{
+		printf("%d ", num2->number);
+		num2 = num2->next;
+	} while (num2 != num3);
+	return 0;
+}
+struct b *create()
+{
+	struct b *p, *p1, *head;
+	int n = 0;
+	head = NULL;
+	p = p1 = (struct b *)malloc(LENGTH);
+	p->number = rand() % 100 + 1;
+	while (n < Length)
+	{
+		n++;
+		if (n == 1)
+		{
+			head = p;
+		}
+		else
+		{
+			p1->next = p;
+			p1 = p;
+		}
+		p = (struct b *)malloc(LENGTH);
+		p->number = rand() % 100 + 1;
+	}
+	p1->next = head;
+	return p1;
+}

@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct b
+{
+	int number;
+	struct b *next;
+};
+#define Length 13
+#define LENGTH sizeof(struct b)
+struct b *create();
+void control(struct b *L);
+int main()
+{
+	struct b *num;
+	num = create();
+	control(num);
+	return 0;
+}
+struct b *create()
+{
+	struct b *p, *p1, *head;
+	int n = 0;
+	head = NULL;
+	p = p1 = (struct b *)malloc(LENGTH);
+	p->number = 0;
+	while (n<13)
+	{
+		n++;
+		if (n == 1)
+		{
+			head = p;
+		}
+		else
+		{
+			p1->next = p;
+			p1 = p;
+		}
+		p = (struct b *)malloc(LENGTH);
+		p->number = 0;
+	}
+	p1->next = head;
+	return p1;
+}
+void control(struct b *L)
+{
+	struct b *p,*p1;
+	int i,j=1;
+	p = L;
+	for (i = 1;i <= Length;i++)
+	{
+		for (j = 1;j <= i;j++)
+		{
+			p = p->next;
+			while (p->number != 0)
+			{
+				p = p->next;  
+			}
+		}
+		p->number = i;
+	}
+	p1 = p->next;
+	p = p->next;
+	do
+	{
+		printf("ºÚÌÒ%d ", p->number);
+		p = p->next;
+	} while (p != p1);
+}
