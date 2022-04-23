@@ -12,6 +12,7 @@ void pop(struct b *s);
 void clear(struct b *s);
 void destory(struct b *s);
 int stack_length(struct b *s);
+
 int main()
 {
 	struct b stack;

@@ -25,6 +25,8 @@ int main(void)
 
     return 0;
 }
+
+//对数组内的数据进行选择排序
 void selection_sorting(int nums[])
 {
     int temp;

@@ -18,7 +18,8 @@ int main(void)
     }
     else if(ret==0)
     {
-        fd=open("file.txt",O_RDWR|O_CREAT|O_APPEND,0664);
+        //fd=open("file.txt",O_RDWR|O_CREAT|O_APPEND,0664);
+        fd=open("file.txt",O_RDWR|O_CREAT,0664);
         write(fd,"world\n",6);
     }
     

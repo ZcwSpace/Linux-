@@ -1,11 +1,22 @@
 #include <stdio.h>
+
 void move(int n, char x, char y, char z);
+
+#define APEC_P_NUM 1000//Asia-Pacific Economic Cooperation people numbers
+
 int main()
 {
-	int n;
+    //int n;
+    //int number;
+    //int floor_num
+    //int hanoi_tower_floor_num;
+    //int ht_floor_num;//hanoi_tower_floor_number
+    int num_of_floor;
+	
 	printf("ÇëÊäÈëººÅµËþµÄ²ãÊý£º");
-	scanf_s("%d", &n);
-	move(n, 'X', 'Y', 'Z');
+	scanf_s("%d", &number);
+	move(floor_number, 'X', 'Y', 'Z');
+	
 	return 0;
 }
 void move(int n, char x, char y, char z)
