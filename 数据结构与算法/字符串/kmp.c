@@ -58,10 +58,10 @@ void matching(char main_str[],char child_str[])
         {
             if(main_str[i]!=child_str[j])
             {
-                if(j==child_str[0])
+                if(i==main_str[0])//退出条件
                 {
-                     printf("don't find\n");
-                     exit(0);
+                    printf("Don't find!\n");
+                    exit(0);
                 }
                 j=next[j];
             }
@@ -69,7 +69,7 @@ void matching(char main_str[],char child_str[])
             {
                 if(j==child_str[0])
                 {
-                    printf("find\n");
+                    printf("Find!\n");
                     exit(0);
                 }
                 i++;
