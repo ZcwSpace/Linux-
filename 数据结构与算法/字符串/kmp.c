@@ -88,38 +88,30 @@ void matching(char main_str[],char child_str[])
 
 //kmp算法的核心就是避免不必要的回溯。
 //具体回溯多少由子串的元素决定。
-//前一个元素是否匹配决定后一个元素回溯多少。
+//前缀和后缀？？？
 void getting_next(char child_str[],int next[])
 {
-    next[1]=0;
-    int count,i,sum;
+    int i=0,j=1;//i表示前缀，j表示后缀
 
-    for(int j=2;j<=child_str[0];j++)
+    next[1]=0;
+    while(j<child_str[0])
     {
-        count=0;
-        i=1;
-        sum=0;
-        for(int k=i+1;k<j;k++)
+        if(0==i||child_str[i]==child_str[j])
         {
-            if(child_str[k]==child_str[i])
+            i++;
+            j++;
+            if(child_str[i]!=child_str[j])
             {
-                count++;
-                i++;
+                next[j]=i;
             }
             else
             {
-                if(count>=sum)
-                {
-                    sum=count;
-                    next[j]=i;
-                }
-                i=1;
-                count=0;
+                next[i]=next[j];
             }
         }
-        if(count>=sum)
+        else
         {
-            next[j]=i;
+            i=next[i];
         }
     }
 }
