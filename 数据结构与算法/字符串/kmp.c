@@ -98,19 +98,22 @@ void getting_next(char child_str[],int next[])
     {
         if(0==i||child_str[i]==child_str[j])
         {
+            printf("%d==%d\n",child_str[i],child_str[j]);
             i++;
             j++;
+            
             if(child_str[i]!=child_str[j])
             {
                 next[j]=i;
             }
             else
             {
-                next[i]=next[j];
+                next[j]=next[i];
             }
         }
         else
         {
+            printf("%d!=%d\n",child_str[i],child_str[j]);
             i=next[i];
         }
     }
