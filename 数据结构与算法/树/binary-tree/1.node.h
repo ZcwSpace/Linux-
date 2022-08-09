@@ -1,6 +1,6 @@
 #define ElemType char //Element Type
-typedef struct  BiTNode//binary tree node
+typedef struct  BiTNode//Binary Bree Node
 {
     ElemType data;
-    struct BiTNode *lchild,*rchild;
-}Node,*NodeAddr;//,node address 
+    struct BiTNode *lchild,*rchild;//father node,left child,right child
+}Node,*NodeAddr;//,Node Address 
