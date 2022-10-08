@@ -1,0 +1,8 @@
+{
+    "C_Cpp.errorSquiggles": "Enabled",
+    "files.associations": {
+        "binary_tree.h": "c",
+        "huffman.h": "c",
+        "priority_queue.h": "c"
+    }
+}

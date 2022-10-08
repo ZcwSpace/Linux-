@@ -6,17 +6,44 @@ encode
 decode
 */
 //哈弗曼树：左子树用0来表示，右子树用1来表示
-#include "priority_queue.h"
-#include <huffman.h>
+#include "huffman.h"
+#include "queue_tree.h"
 
-int main(void)
+void statistic(LinkQueue *link_queue,char * filename);
+
+int main(int argc,char **argv)
 {
     LinkQueue link_queue;
+    NodeAddr nodeaddr;
+
+    nodeaddr=(NodeAddr)malloc(sizeof(Node));
 
     initializating(&link_queue);
+    statistic(&link_queue,argv[1]);
+    creating(&link_queue,nodeaddr);
+    tracing_tree(1,nodeaddr);
 }
-void statistic()
+void statistic(LinkQueue *link_queue,char * filename)
 {
-    
+    FILE *fd;
+    char ch;
+    int i=0;
+
+    fd=fopen(filename,"r");
+    if(NULL==fd)
+    {
+        printf("要加密的文件并不存在！\n");
+
+        exit(0);
+    }
+    while(EOF!=(ch=fgetc(fd)))
+    {
+
+        judging(link_queue,ch,1);
+    }
+
+    sorting(link_queue);
+
+    tracing_queue(link_queue);
 }
 
