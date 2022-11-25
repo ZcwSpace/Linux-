@@ -6,21 +6,27 @@ encode
 decode
 */
 //哈弗曼树：左子树用0来表示，右子树用1来表示
-#include "huffman.h"
-#include "queue_tree.h"
+#include "queue_tree_table.h"
 
 void statistic(LinkQueue *link_queue,char * filename);
 
 int main(int argc,char **argv)
 {
-    LinkQueue link_queue;
+    LinkQueue* link_queue;
     NodeAddr nodeaddr;
+    struct table* tb; 
 
     nodeaddr=(NodeAddr)malloc(sizeof(Node));
+    link_queue=(LinkQueue *)malloc(sizeof(LinkQueue));
+    
+    initializating(link_queue);
+    statistic(link_queue,argv[1]);
+    creating(link_queue,nodeaddr);
+    free(link_queue->front);
+    free(link_queue);
 
-    initializating(&link_queue);
-    statistic(&link_queue,argv[1]);
-    creating(&link_queue,nodeaddr);
+    tb=create_tbl(nodeaddr);
+
     tracing_tree(1,nodeaddr);
 }
 void statistic(LinkQueue *link_queue,char * filename)

@@ -1,5 +1,8 @@
 
+#include <huffman.h>
+
 #define ElemType char //Element Type
+//树和队列
 typedef struct queue_tree
 {
     ElemType data;//字母
@@ -13,9 +16,23 @@ typedef struct
     NodeAddr front,rear;
 }LinkQueue;
 
+//表
+typedef struct table_node
+{
+    char letter;
+    char * string;
+    struct table_node * next; 
+}Tb_Node,*Tb_Node_Addr;
+
+typedef struct table
+{
+    struct table_node * first; 
+    struct table_node * rear; 
+}Tbl,*Tbl_addr;
+
 void queue_inserting(LinkQueue * q,NodeAddr node_addr);
 void creating(LinkQueue *q,NodeAddr node_addr);
-void tracing_tree(int floor,NodeAddr node_addr);
+void tracing_tree(int k,NodeAddr nodeaddr,char code[256],Tbl_addr table);
 void initializating(LinkQueue *link_queue_addr);
 void adding(LinkQueue * q,char e,int num);
 void deleting(LinkQueue *q,NodeAddr node_addr);
@@ -57,13 +74,34 @@ void creating(LinkQueue *q,NodeAddr node_addr)
 }
 
 //前序遍历
-void tracing_tree(int floor,NodeAddr node_addr)
+void tracing_tree(int k,NodeAddr nodeaddr,char code[256],Tbl_addr table)
 {
-    if(node_addr)
+    if(nodeaddr->lchild==NULL&&nodeaddr->rchild==NULL)
     {
-        printf("%d在第%d层\n",node_addr->num,floor);
-        tracing_tree(floor+1,node_addr->lchild);
-        tracing_tree(floor+1,node_addr->rchild);
+        code[k]='\n';
+        
+        Tb_Node_Addr tbl_node_addr=(Tb_Node_Addr)malloc(sizeof(Tb_Node));
+        tbl_node_addr->letter=nodeaddr->data;
+        tbl_node_addr->string=code;
+        tbl_node_addr->next=NULL;
+
+        if(table->first==NULL)
+        {
+            table->first=tbl_node_addr;
+            table->rear=tbl_node_addr;
+        }
+        else
+        {
+            table->rear->next=tbl_node_addr;
+            table->rear=tbl_node_addr;
+        }
+    }
+    else
+    {
+        code[k]='0';
+        tracing_tree(k+1,nodeaddr->lchild,code,table);
+        code[k]='1';
+        tracing_tree(k+1,nodeaddr->rchild,code,table);
     }
 }
 
@@ -229,4 +267,15 @@ void adding_queue(LinkQueue * q,NodeAddr node_addr)
     node_addr->next=temp;
     q->front->next=node_addr;
     sorting(q);
+}
+struct table * create_tbl(NodeAddr nodeaddr)
+{
+    struct table *tbl =(struct table * )malloc(sizeof(struct table));
+    tbl->first=tbl->rear=NULL;
+
+    char code[256];
+    int k=0;
+    tracing_tree(k,nodeaddr,code,&tbl);
+
+    return tbl;
 }
