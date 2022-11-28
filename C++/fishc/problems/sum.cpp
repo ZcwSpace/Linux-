@@ -22,6 +22,7 @@ int main()
             
             if('\n' == (letter=getchar()))
             {
+                sum += temp;
                 goto label;
             }
         }
