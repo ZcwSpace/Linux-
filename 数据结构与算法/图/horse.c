@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <time.h>
-#define SCALE  6
+#define SCALE  8
 
 int judging(int i,int j,int num);
 void printing();
@@ -22,6 +22,7 @@ int main()
     return 0;
 }
 
+
 int judging(int i,int j,int num)
 {
     int flag=0;
@@ -36,6 +37,8 @@ int judging(int i,int j,int num)
         if(num==SCALE*SCALE)
         {
             printing();
+
+            return 1;
         }
         flag+=judging(i+1,j+2,num);
         flag+=judging(i+1,j-2,num);
@@ -47,15 +50,18 @@ int judging(int i,int j,int num)
         flag+=judging(i+2,j-1,num);
         flag+=judging(i-2,j-1,num);
 
-        if(flag==0)
+        if(0==flag)
         {
             record[i][j]=0;
+
             return 0;
         }
+
         return 1;
     }
     else
     {
+
         return 0;
     }
 }
