@@ -1,74 +1,77 @@
 #include <stdio.h>
-#include <stdlib.h>
-#define SCALE  8
+#include <time.h>
+#define SCALE  6
 
-void judging(int record[SCALE][SCALE],int i,int j,int num);
-void printing(int record[SCALE][SCALE]);
+int judging(int i,int j,int num);
+void printing();
+
+int record[SCALE][SCALE]={0};
 
 int main()
 {                     
-    int record[SCALE][SCALE]={0};
-    int i,j;
+    clock_t start,finish;//定义两个变量记录开始和结束时间
+    start=clock();
 
-    judging(record,2,0,0);
+    judging(2,0,0);
+
+    finish=clock();
+    printf("本次计算一共耗时%f秒\n\n",(double)(finish-start)/CLOCKS_PER_SEC);
+    //CLOCKS_PER_SEC:每秒运行多少个周期。
+    //用一共运行多少回除以每秒运行多少周期就可以计算出运行了多少秒
 
     return 0;
 }
 
-void judging(int record[SCALE][SCALE],int i,int j,int num)
+int judging(int i,int j,int num)
 {
-    int record_temp[SCALE][SCALE];
-
-    for(int i=0;i<SCALE;i++)
-    {
-        for(int j=0;j<SCALE;j++)
-        {
-            record_temp[i][j]=record[i][j];
-        }
-    }
-
+    int flag=0;
 
     if(i<0||j<0||j>SCALE-1||i>SCALE-1)
     {
-        return ;
+        return 0;
     }
-    else if(record_temp[i][j]==0)
+    else if(record[i][j]==0)
     {
-        record_temp[i][j]=++num;
+        record[i][j]=++num;
         if(num==SCALE*SCALE)
         {
-            printing(record_temp);
-            exit(0);
+            printing();
         }
-        judging(record_temp,i+1,j+2,num);
-        judging(record_temp,i+1,j-2,num);
-        judging(record_temp,i-1,j+2,num);
-        judging(record_temp,i-1,j-2,num);
+        flag+=judging(i+1,j+2,num);
+        flag+=judging(i+1,j-2,num);
+        flag+=judging(i-1,j+2,num);
+        flag+=judging(i-1,j-2,num);
 
-        judging(record_temp,i+2,j+1,num);
-        judging(record_temp,i-2,j+1,num);
-        judging(record_temp,i+2,j-1,num);
-        judging(record_temp,i-2,j-1,num);
+        flag+=judging(i+2,j+1,num);
+        flag+=judging(i-2,j+1,num);
+        flag+=judging(i+2,j-1,num);
+        flag+=judging(i-2,j-1,num);
+
+        if(flag==0)
+        {
+            record[i][j]=0;
+            return 0;
+        }
+        return 1;
+    }
+    else
+    {
+        return 0;
     }
 }
 
-void printing(int record[SCALE][SCALE])
+//打印棋盘
+void printing()
 {
-    for(int i=1;i<=SCALE*SCALE;i++)
+    int i,j,k;
+
+    for(i=0;i<SCALE;i++)
     {
-        for(int j=0;j<SCALE;j++)
+        for(j=0;j<SCALE;j++)
         {
-            for(int k=0;k<SCALE;k++)
-            {
-                if(i == record[j][k])
-                {
-                    printf("%d\t",j*SCALE+k+1);
-                }
-            }
+            printf("%d\t",record[i][j]); 
         }
-        if(i%SCALE==0)
-        {
-            putchar('\n');
-        }
+        putchar('\n');
     }
+    putchar('\n');
 }
