@@ -14,6 +14,7 @@ int main(int argc, char **argv)
     int ret = -1;
     char buf[100];
 
+    printf("cfd:%d\n");
     while(1)
     {
         bzero(buf,sizeof(buf));

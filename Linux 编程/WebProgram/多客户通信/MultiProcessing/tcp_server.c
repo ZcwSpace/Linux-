@@ -64,6 +64,7 @@ int main()
             print_err("accept failed", __LINE__ - 3, errno);
             exit(-1);
         }
+
         ret = fork();
         if(0 < ret)
         {
@@ -77,9 +78,19 @@ int main()
             sprintf(buf, "%ld", cfd);
 
             //传给新程序的参数
-            char *argv[] = {buf, NULL};
+            char *argv[] = {"./new_pro",buf, NULL};
 
-            execve("./new_pro", argv, environ);
+            ret = execve("./new_pro", argv, environ);
+            if(-1 == ret)
+            {
+                print_err("execve failed", __LINE__ - 3, errno);
+                exit(-1);
+            }
+        }
+        else
+        {
+            print_err("fork failed", __LINE__ - 3, errno);
+            exit(-1);
         }
     }
     

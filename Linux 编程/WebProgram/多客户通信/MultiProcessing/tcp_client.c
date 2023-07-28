@@ -59,15 +59,13 @@ int main()
     {
         bzero(buf, sizeof(buf));
         scanf("%s", buf);
-        ret = send(sockfd, (void *)&buf, sizeof(buf), 0);\
+        ret = send(sockfd, (void *)&buf, sizeof(buf), 0);
         if(ret == -1)
         {
             print_err("send failed",__LINE__ - 3, errno);
         }
     }
     
-
-
     return 0;
 }
 
@@ -83,17 +81,18 @@ void print_err(char *str,int line,int err_no)
 void *pth_fun(void *pth_org)
 {
     char buf[100];
+
     while(1)
     {
         bzero(&buf,sizeof(buf));
         ret = recv(sockfd, (void *)&buf, sizeof(buf), 0);
         if(ret == -1)
         {
-            print_err("recv failed",__LINE__ - 3, errno);
+            print_err("recv failed", __LINE__ - 3, errno);
         }
-        else if(ret >0)
+        else if(ret > 0)
         {
-            printf("服务器返回的数据为：%s\n",buf);
+            printf("服务器返回的数据为：%s\n", buf);
         }
 
     }
@@ -103,7 +102,6 @@ void signal_fun(int signo)
 {
     if(signo == SIGINT)
     {
-        //close(cfd);
         shutdown(sockfd, SHUT_RDWR);
         exit(0);
     }
