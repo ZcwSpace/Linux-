@@ -3,10 +3,9 @@
         "caretX": 11,
         "caretY": 7,
         "filename": "/home/zcw/Documents/Linux-/C语言深度解析/1.C编译过程与内存结构/IDE开发方式与源文件开发方式/helloworld/main.c",
-        "focused": true,
-        "isOpen": true,
+        "focused": false,
+        "isOpen": false,
         "leftChar": 1,
-        "order": 0,
         "topLine": 1
     }
 ]

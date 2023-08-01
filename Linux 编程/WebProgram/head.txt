@@ -1,0 +1,44 @@
+A) Sys/socket.h :
+i. sockaddr 结构: struct sockaddr是通用的套接字地址 是linux 网络通信的地址结构体的一种，其定义如下：
+ struct sockaddr
+{
+unsigned short  sa_family ; /* address family*/
+Char sa_data[14] ; /*up to 14 bytes of direct address */
+} ;
+说明：
+Sa_family : 是地址家族，也成作，协议族，一般都是"AF_XXX"的形式，常用的有
+AF_INET  Arpa（TCP/IP） 网络通信协议
+AF_UNIX  UNIX 域协议（文件系统套接字）
+AF_ISO    ISO标准协议
+AF_NS    施乐网络体统协议
+AF_IPX  Novell IPX 协议
+AF_APPLETALK   Appletalk DDS 
+ 
+Sa_data:  是14字节的协议地址
+
+
+B)  netinet/in.h : 
+struct socketaddr_in : struct sockaddr是通用的套接字地址，而struct sockaddr_in则是internet环境下套接字的地址形式，二者长度一样，都是16个字节。二者是并列结构，指向sockaddr_in结构的指针也可以指向sockaddr。一般情况下，需要把sockaddr_in结构强制转换成sockaddr结构再传入系统调用函数中。
+定义如下：
+Struct sockaddr_in 
+{
+__SOCKADDR_COMMN ( sin_ );
+in_port_t sin_port ; /* prot number . */
+Struct in_addr sin_addr ;  /* Internet address . */
+/*  Pad to size of 'struct sockaddr' . */
+Unsigned char sin_zero[sizeof ( struct sockaddr ) - __SOCKADDR_COMMON_SIZE - sizeof ( in_port_t ) - sizeof( struct in_addr )];
+};
+
+
+C)  sys/un.h : 
+Struct socketaddr_un : 真对UNIX域套接字地址, struct sockaddr是通用的套接字地址，而struct sockaddr_un则是UNIX环境下套接字的地址形式，一般情况下，需要把sockaddr_un结构强制转换成sockaddr结构再传入系统调用函数中。
+ 
+结构定义如下：
+Struct socketaddr_un
+{
+_SOCKADDR_COMMON(sun_);  // __SOCKADDR_COMMON(sun_) 宏定义对应的定义为 sa_family_t sun_family
+Char sun_path[108];
+};
+————————————————
+版权声明：本文为CSDN博主「rangf」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/rangf/article/details/8350113

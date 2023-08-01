@@ -38,17 +38,17 @@ int main()
 void MiniSpanTree_Prim(Matrix G)
 {
     int min, i, j, k;
-    int address[LENGTH];//保存相关顶点下标，如果节点和当前节点有联系，就在代表该节点的位置处填当前节点的位置。
-    int power[LENGTH];//保存相关顶点间边的权值
+    int adjvex[LENGTH];//保存相关顶点下标，如果节点和当前节点有联系，就在代表该节点的位置处填当前节点的位置。
+    int lowcost[LENGTH];//保存相关顶点间边的权值
 
-    power[0] = 0;//v0作为最小生成树的跟开始遍历，权值为0
-    address[0] = 0;//v0第一个加入
+    lowcost[0] = 0;//v0作为最小生成树的跟开始遍历，权值为0
+    adjvex[0] = 0;//v0第一个加入
 
     //初始化操作
-    for(i = 1; i < G.numVertexes; i++)
+    for(i = 0; i < G.numVertexes; i++)
     {
-        power[i] = G.arc[0][i];//将邻接矩阵第0行所有权值先加入数组
-        address[i] = 0;//初始化全部先为V0的下标
+        lowcost[i] = G.arc[0][i];//将邻接矩阵第0行所有权值先加入数组
+        adjvex[i] = 0;//初始化全部先为V0的下标
     }
 
     //真正构造最小生成树的过程
@@ -61,32 +61,27 @@ void MiniSpanTree_Prim(Matrix G)
         //遍历全部顶点，找出最小权值
         while(j < G.numVertexes)
         {
-            //找出power数组已存储的最小权值
-            if(power[j] != 0 && power[j] < min)
+            //找出lowcost数组已存储的最小权值
+            if(lowcost[j] != 0 && lowcost[j] < min)
             {
-                //将发现的最小权值的下标存入k，以待使用
-                min = power[j];
+                min = lowcost[j];//将发现的最小权值的下标存入k，以待使用
                 k = j;
             }
             j++; 
         }
-
         //打印当前顶点边中权值最小的边
-        printf("(%c, %c)",G.vertex[address[k]], G.vertex[k]);
-        //将当前顶点的权值设置为0，表示此顶点已经完成任务，进行下一个顶点的遍历
-        power[k] = 0; 
+        printf("(%c, %c)",G.vertex[adjvex[k]], G.vertex[k]);
+        lowcost[k] = 0; //将当前顶点的权值设置为0，表示此顶点已经完成任务，进行下一个顶点的遍历
 
-        //邻接矩阵k行逐个遍历全部顶点，找出最小值
+        //邻接矩阵k行逐个遍历全部顶点
         for(j = 1; j < G.numVertexes; j++)
         {
-            if(power[j] != 0 && G.arc[k][j] < power[j])
+            if(lowcost[j] != 0 && G.arc[k][j] < lowcost[j])
             {
-                power[j] = G.arc[k][j];
-                address[j] = k;
+                lowcost[j] = G.arc[k][j];
+                adjvex[j] = k;
             }
         }
     }
-
     putchar('\n');
 }
-//(A, B)(A, F)(B, I)(I, C)(B, G)(G, H)(H, E)(H, D)
