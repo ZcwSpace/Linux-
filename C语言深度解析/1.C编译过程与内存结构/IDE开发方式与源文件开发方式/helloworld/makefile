@@ -6,12 +6,12 @@ CC       = gcc
 OBJ      = main.o
 LINKOBJ  = main.o
 CLEANOBJ  =  main.o helloworld
-LIBS     = 
+LIBS     =  -L"/home/zcw/Documents/Linux-/C语言深度解析/2.预处理/include/test"
 INCS     =  
 CXXINCS  =  
 BIN      = helloworld
-CXXFLAGS = $(CXXINCS)  -g3 -pipe -Wall -Wextra -v -D__DEBUG__
-CFLAGS   = $(INCS)  -g3 -pipe -Wall -Wextra -v -D__DEBUG__
+CXXFLAGS = $(CXXINCS)  -g3 -pipe -Wall -Wextra -D__DEBUG__
+CFLAGS   = $(INCS)  -g3 -pipe -Wall -Wextra -D__DEBUG__
 RM       = rm -rf
 
 .PHONY: all all-before all-after clean clean-custom

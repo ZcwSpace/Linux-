@@ -1,0 +1,4 @@
+void fun(int a)
+{
+    printf("a = %d\n", a);
+}
